@@ -1,0 +1,837 @@
+---
+title: "Dissertation_RMD file"
+author: "B247721"
+date: "2024-06-24"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+
+library(tidyverse)
+library(brms)
+library(broom.mixed)
+library(posterior)
+library(knitr)
+library(ggplot2)
+library(tidybayes)
+library(stats)
+library(lmtest)
+library(ggdist)
+library(bayesmeta)
+library(bayesplot)
+library(metafor)
+library(marginaleffects)
+library(dplyr)
+library(forcats)
+library(stringr)
+library(purrr)
+library(glue)
+
+seed <- 999
+```
+
+## Read data for age at onset studies
+
+```{r read-data}
+retrospective_2 <- read_csv("data/retrospective.csv") %>% 
+  mutate(
+    SE = SD / sqrt(N),
+    mobi = factor(group, levels = c("monolingual", "bilingual"))
+  )
+
+```
+
+## Set the Prior
+```{r}
+meta_analysismodel_1_priors <- c(
+  prior(lkj(2), class = cor),
+  prior(student_t(3, 0, 9), class = sd),
+  prior(normal(65, 22.5), class = b)
+)
+```
+
+
+##Fit the model with the group-level intercept "Study"
+```{r}
+meta_analysismodel_1 <- brm(
+  mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
+  data = retrospective_2,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_1",
+  seed = seed
+)
+summary(meta_analysismodel_1)
+
+```
+```{r}
+plot(meta_analysismodel_1, ask = FALSE)
+```
+
+
+```{r}
+avg_comparisons(meta_analysismodel_1, variables = "mobi")
+```
+
+
+
+```{r}
+
+spread_draws(meta_analysismodel_1, r_Study[study,mobi]) %>% 
+  ggplot(aes(r_Study, reorder(as.factor(study), r_Study, mean))) +
+  stat_halfeye() +
+  facet_grid(~mobi)
+
+
+```
+
+
+
+```{r}
+# Check the variable names in the model draws
+model_draws <- as_draws_df(meta_analysismodel_1)
+names(model_draws)
+
+```
+#Forest plot for the main Meta-analysis
+```{r}
+
+# Extract draws using the correct variable names
+draws <- spread_draws(meta_analysismodel_1, 
+                      b_mobimonolingual, 
+                      b_mobibilingual, 
+                      `r_Study[Alladi.et.al.2013,mobimonolingual]`, 
+                      `r_Study[Alladi.et.al.2017,mobimonolingual]`,
+                      `r_Study[Berkes.et.al.2020,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobimonolingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobimonolingual]`,
+                      `r_Study[Clare.et.al.2016,mobimonolingual]`,
+                      `r_Study[Craik.et.al.2010,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2024,mobimonolingual]`,
+                      `r_Study[Duncan.et.al.2018,mobimonolingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobimonolingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobimonolingual]`,
+                      `r_Study[Ossher.et.al.2013,mobimonolingual]`,
+                      `r_Study[Perani.et.al.2017,mobimonolingual]`,
+                      `r_Study[Ramakrishnan.et.al.2017,mobimonolingual]`,
+                      `r_Study[Woumans.et.al.2015,mobimonolingual]`,
+                      `r_Study[Zheng.et.al.2018,mobimonolingual]`,
+                      `r_Study[Alladi.et.al.2013,mobibilingual]`, 
+                      `r_Study[Alladi.et.al.2017,mobibilingual]`,
+                      `r_Study[Berkes.et.al.2020,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobibilingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobibilingual]`,
+                      `r_Study[Clare.et.al.2016,mobibilingual]`,
+                      `r_Study[Craik.et.al.2010,mobibilingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobibilingual]`,
+                      `r_Study[de.Leon.et.al.2024,mobibilingual]`,
+                      `r_Study[Duncan.et.al.2018,mobibilingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobibilingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobibilingual]`,
+                      `r_Study[Ossher.et.al.2013,mobibilingual]`,
+                      `r_Study[Perani.et.al.2017,mobibilingual]`,
+                      `r_Study[Ramakrishnan.et.al.2017,mobibilingual]`,
+                      `r_Study[Woumans.et.al.2015,mobibilingual]`,
+                      `r_Study[Zheng.et.al.2018,mobibilingual]`)
+
+
+draws_long <- draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = mobimonolingual + b_mobimonolingual,
+    study_effect_bi = mobibilingual + b_mobibilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  ungroup()
+
+# Add an summary effect row
+overall_effect <- draws_diff %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  mutate(Study = "Summary_effect")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+# Generate the forest plot
+ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+  geom_vline(xintercept = 0, size = .25, lty = 2) +  # Vertical line at zero
+  geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
+  geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_text(
+    aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
+    hjust = 0
+  ) + 
+  labs(
+    title = "Forest Plot of Meta-analytic Effects",
+    x = "Difference in Age at Onset",
+    y = "Study"
+  ) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8)) + 
+  coord_cartesian(clip = "off", xlim = c(-4, 16))
+```
+
+
+## Draw funnel plot
+```{r}
+# Extract draws using the correct variable names
+draws <- spread_draws(meta_analysismodel_1, 
+                      b_mobimonolingual, 
+                      b_mobibilingual, 
+                      `r_Study[Alladi.et.al.2013,mobimonolingual]`, 
+                      `r_Study[Alladi.et.al.2017,mobimonolingual]`,
+                      `r_Study[Berkes.et.al.2020,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobimonolingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobimonolingual]`,
+                      `r_Study[Clare.et.al.2016,mobimonolingual]`,
+                      `r_Study[Craik.et.al.2010,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2024,mobimonolingual]`,
+                      `r_Study[Duncan.et.al.2018,mobimonolingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobimonolingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobimonolingual]`,
+                      `r_Study[Ossher.et.al.2013,mobimonolingual]`,
+                      `r_Study[Perani.et.al.2017,mobimonolingual]`,
+                      `r_Study[Ramakrishnan.et.al.2017,mobimonolingual]`,
+                      `r_Study[Woumans.et.al.2015,mobimonolingual]`,
+                      `r_Study[Zheng.et.al.2018,mobimonolingual]`,
+                      `r_Study[Alladi.et.al.2013,mobibilingual]`, 
+                      `r_Study[Alladi.et.al.2017,mobibilingual]`,
+                      `r_Study[Berkes.et.al.2020,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobibilingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobibilingual]`,
+                      `r_Study[Clare.et.al.2016,mobibilingual]`,
+                      `r_Study[Craik.et.al.2010,mobibilingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobibilingual]`,
+                      `r_Study[de.Leon.et.al.2024,mobibilingual]`,
+                      `r_Study[Duncan.et.al.2018,mobibilingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobibilingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobibilingual]`,
+                      `r_Study[Ossher.et.al.2013,mobibilingual]`,
+                      `r_Study[Perani.et.al.2017,mobibilingual]`,
+                      `r_Study[Ramakrishnan.et.al.2017,mobibilingual]`,
+                      `r_Study[Woumans.et.al.2015,mobibilingual]`,
+                      `r_Study[Zheng.et.al.2018,mobibilingual]`)
+
+# Reshape data to long format for easier handling
+draws_long <- draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = mobimonolingual + b_mobimonolingual,
+    study_effect_bi = mobibilingual + b_mobibilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    # lower = quantile(difference, 0.025),
+    # upper = quantile(difference, 0.975)
+    se_diff = sd(difference)
+  ) %>%
+  ungroup()
+
+# Add an overall effect row
+ovearall_draws <- as_draws_df(meta_analysismodel_1) %>% 
+  mutate(difference = b_mobibilingual - b_mobimonolingual)
+
+overall_effect <- ovearall_draws %>%
+  summarise(
+    mean_diff = mean(difference),
+    se_diff = sd(difference),
+    lower = mean_diff - (1.96 * se_diff),
+    upper = mean_diff + (1.96 * se_diff)
+  ) %>%
+  mutate(Study = "Overall")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+
+# Function to create and save funnel plots
+create_funnel_plot <- function(estimates_data, meta_ln_bm_est, meta_ln_bm_q2.5, meta_ln_bm_q97.5, filename) {
+  # Compute the range of standard errors
+  e.max <- max(estimates_data$se_diff)
+  se_range <- seq(0, e.max, by = 0.001)
+  
+  # Create a tibble for confidence interval boundaries
+  ci <- tibble(
+    x_seq = se_range,
+    ci_lo = meta_ln_bm_est - 1.96 * se_range,
+    ci_up = meta_ln_bm_est + 1.96 * se_range
+  )
+  
+  # Create the funnel plot
+  funnel_plot <- estimates_data %>%
+    ggplot(aes(mean_diff, se_diff)) +
+    geom_line(aes(y = x_seq, x = ci_up), data = ci) +
+    geom_line(aes(y = x_seq, x = ci_lo), data = ci) +
+    geom_vline(aes(xintercept = 0), colour = "grey") +
+    geom_vline(aes(xintercept = meta_ln_bm_est)) +
+    annotate("rect", ymin = -Inf, ymax = Inf, xmin = meta_ln_bm_q2.5, xmax = meta_ln_bm_q97.5, alpha = 0.5, fill = "#a6cee3") +
+    geom_point(size = 3) +
+    labs(
+      caption = "The shaded area is the 95% CI of the meta-analytical posterior,\nwhile the vertical line is the meta-analytical mean difference.",
+      x = "Mean Estimate Difference"
+    ) +
+    scale_y_reverse()
+  
+  # Save the plot
+  ggsave(filename, plot = funnel_plot, width = 7, height = 4.5)
+}
+
+
+# Create and save the funnel plot for the differences
+create_funnel_plot(draws_summary, overall_effect$mean_diff, overall_effect$lower, overall_effect$upper, "./img/funnel-sd-diff2.png")
+
+```
+
+##Confounding variable: Education
+```{r}
+meta_analysismodel_2 <- brm(
+  mean | se(SE) ~ 0 + mobi + years_of_education + (0 + mobi | Study),
+  data = retrospective_2,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_2",
+  seed = seed
+)
+summary(meta_analysismodel_2)
+```
+
+```{r}
+avg_comparisons(meta_analysismodel_2, variables = "mobi")
+```
+
+
+##Sub-group analysis
+#AD
+```{r}
+AD <- read.csv("data/AD.csv") %>% mutate(
+    SE = SD / sqrt(N),
+    mobi = factor(group, levels = c("monolingual", "bilingual"))
+  )
+
+```
+
+```{r}
+meta_analysismodel_3 <- brm(
+  mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
+  data = AD,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_3",
+  seed = seed
+)
+summary(meta_analysismodel_3)
+```
+```{r}
+avg_comparisons(meta_analysismodel_3, variables = "mobi")
+```
+
+```{r}
+model_draws <- as_draws_df(meta_analysismodel_3)
+names(model_draws)
+```
+
+
+#Forest plot for AD sub-group
+```{r}
+# Extract draws using the correct variable names
+draws <- spread_draws(meta_analysismodel_3, 
+                      b_mobimonolingual, 
+                      b_mobibilingual, 
+                      `r_Study[Alladi.et.al.2013,mobimonolingual]`, 
+                      `r_Study[Berkes.et.al.2020,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobimonolingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobimonolingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobimonolingual]`,
+                      `r_Study[Clare.et.al.2016,mobimonolingual]`,
+                      `r_Study[Craik.et.al.2010,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobimonolingual]`,
+                      `r_Study[Duncan.et.al.2018,mobimonolingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobimonolingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobimonolingual]`,
+                      `r_Study[Woumans.et.al.2015,mobimonolingual]`,
+                      `r_Study[Zheng.et.al.2018,mobimonolingual]`,
+                      `r_Study[Alladi.et.al.2013,mobibilingual]`, 
+                      `r_Study[Berkes.et.al.2020,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2007,mobibilingual]`,
+                      `r_Study[Bialystok.et.al.2014,mobibilingual]`,
+                      `r_Study[Chertkow.et.al.2010,mobibilingual]`,
+                      `r_Study[Clare.et.al.2016,mobibilingual]`,
+                      `r_Study[Craik.et.al.2010,mobibilingual]`,
+                      `r_Study[de.Leon.et.al.2020,mobibilingual]`,
+                      `r_Study[Duncan.et.al.2018,mobibilingual]`,
+                      `r_Study[Kowoll.et.al.2016,mobibilingual]`,
+                      `r_Study[Mendez..Chavez.&.Akhlaghipour.2020,mobibilingual]`,
+                      `r_Study[Woumans.et.al.2015,mobibilingual]`,
+                      `r_Study[Zheng.et.al.2018,mobibilingual]`)
+
+# Reshape data to long format for easier handling
+draws_long <- draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = mobimonolingual + b_mobimonolingual,
+    study_effect_bi = mobibilingual + b_mobibilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  ungroup()
+
+# Add an overall effect row
+overall_effect <- draws_diff %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  mutate(Study = "Summary_effect")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+# Generate the forest plot
+ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+  geom_vline(xintercept = 0, size = .25, lty = 2) +  # Vertical line at zero
+  geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
+  geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_text(
+    aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
+    hjust = 0
+  ) +  # Add text labels for each study
+  labs(
+    title = "Forest Plot of Meta-analytic Effect in AD Sub-group ",
+    x = "Difference in Age at Onset",
+    y = "Study"
+  ) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8)) + # Adjust text size if needed
+  coord_cartesian(clip = "off", xlim = c(-4, 16))
+```
+
+
+#FTD
+```{r}
+FTD <- read.csv("data/FTD.csv") %>% mutate(
+    SE = SD / sqrt(N),
+    mobi = factor(group, levels = c("monolingual", "bilingual"))
+  )
+```
+
+```{r}
+meta_analysismodel_4 <- brm(
+  mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
+  data = FTD,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_4",
+  seed = seed
+)
+summary(meta_analysismodel_4)
+```
+
+#Forest plot for FTD sub-group
+```{r}
+model_draws1 <- as_draws_df(meta_analysismodel_4)
+names(model_draws1)
+
+# Extract draws using the correct variable names
+draws <- spread_draws(meta_analysismodel_4, 
+                      b_mobimonolingual, 
+                      b_mobibilingual, 
+                      `r_Study[.de.Leon.et.al.2024,mobimonolingual]`, 
+                      `r_Study[Alladi.et.al.2013,mobimonolingual]`,
+                      `r_Study[Alladi.et.al.2017,mobimonolingual]`,
+                      `r_Study[de.Leon.et.al.2024,mobimonolingual]`,
+                      `r_Study[.de.Leon.et.al.2024,mobibilingual]`,   
+                      `r_Study[Alladi.et.al.2013,mobibilingual]`,    
+                      `r_Study[Alladi.et.al.2017,mobibilingual]`,     
+                      `r_Study[de.Leon.et.al.2024,mobibilingual]`)
+
+
+draws_long <- draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = mobimonolingual + b_mobimonolingual,
+    study_effect_bi = mobibilingual + b_mobibilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  ungroup()
+
+# Add an summary effect row
+overall_effect <- draws_diff %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  mutate(Study = "Summary_effect")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+# Generate the forest plot
+ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+  geom_vline(xintercept = 0, size = .25, lty = 2) +  # Vertical line at zero
+  geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
+  geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_text(
+    aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
+    hjust = 0
+  ) + 
+  labs(
+    title = "Forest Plot of Meta-analytic Effect in FTD Sub-group ",
+    x = "Difference in Age at Onset",
+    y = "Study"
+  ) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8)) + 
+  coord_cartesian(clip = "off", xlim = c(-4, 18))
+```
+
+
+```{r}
+avg_comparisons(meta_analysismodel_4, variables = "mobi")
+```
+
+
+#MCI
+```{r}
+MCI <- read.csv("data/MCI.csv") %>% mutate(
+    SE = SD / sqrt(N),
+    mobi = factor(group, levels = c("monolingual", "bilingual"))
+  )
+```
+
+```{r}
+meta_analysismodel_5 <- brm(
+  mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
+  data = MCI,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_5",
+  seed = seed
+)
+summary(meta_analysismodel_5)
+```
+
+#Forest plot for MCI sub-group
+```{r}
+model_draws2 <- as_draws_df(meta_analysismodel_5)
+names(model_draws2)
+
+# Extract draws using the correct variable names
+draws <- spread_draws(meta_analysismodel_5, 
+                      b_mobimonolingual, 
+                      b_mobibilingual, 
+                      `r_Study[Berkes.et.al.2020,mobimonolingual]`,
+                      `r_Study[Ossher.et.al.2013,mobimonolingual]`, 
+                      `r_Study[Ramakrishnan.et.al.2017,mobimonolingual]`,
+                      `r_Study[Berkes.et.al.2020,mobibilingual]`,
+                      `r_Study[Ossher.et.al.2013,mobibilingual]`,
+                      `r_Study[Ramakrishnan.et.al.2017,mobibilingual]`)
+
+
+draws_long <- draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = mobimonolingual + b_mobimonolingual,
+    study_effect_bi = mobibilingual + b_mobibilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  ungroup()
+
+# Add an summary effect row
+overall_effect <- draws_diff %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  mutate(Study = "Summary_effect")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+# Generate the forest plot
+ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+  geom_vline(xintercept = 0, size = .25, lty = 2) +  # Vertical line at zero
+  geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
+  geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_text(
+    aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
+    hjust = 0
+  ) + 
+  labs(
+    title = "Forest Plot of Meta-analytic Effects in MCI sub-group",
+    x = "Difference in Age at Onset",
+    y = "Study"
+  ) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8)) + 
+  coord_cartesian(clip = "off", xlim = c(-4, 18))
+```
+
+
+```{r}
+avg_comparisons(meta_analysismodel_5, variables = "mobi")
+```
+
+
+#Rerun the model after removing the studies that fall out of the funnel shape
+```{r}
+revised_retrospective <- read.csv("data/revised_retrospective.csv") %>% mutate(
+    SE = SD / sqrt(N),
+    mobi = factor(group, levels = c("monolingual", "bilingual"))
+  )
+```
+
+```{r}
+meta_analysismodel_6 <- brm(
+  mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
+  data = revised_retrospective,
+  prior = meta_analysismodel_1_priors,
+  cores = 4,
+  file = "data/cache/meta_analysismodel_6",
+  seed = seed
+)
+summary(meta_analysismodel_6)
+```
+
+```{r}
+avg_comparisons(meta_analysismodel_6, variables = "mobi")
+```
+
+
+
+##read data
+```{r}
+prospective <- read_csv("data/prospective.csv") %>%
+  mutate(
+    mobi_2 = factor(group, levels = c("monolingual", "bilingual"))
+  )
+```
+
+##fit model
+```{r}
+meta_analysismodel_7 <-brm(
+  Dementia | trials(Total) ~ 0 + mobi_2 + (0 + mobi_2 | Study),
+  data = prospective,
+  family = binomial(),
+  cores = 4,
+  file = "data/cache/meta_analysismodel_7",
+  seed = 1234
+)
+summary(meta_analysismodel_7)
+
+```
+
+```{r}
+plot(meta_analysismodel_7, ask = FALSE)
+```
+
+#Drawing forest plot for incidence rates study
+```{r}
+model_draws <- spread_draws(meta_analysismodel_7, 
+                      b_mobi_2monolingual, 
+                      b_mobi_2bilingual, 
+                      `r_Study[Lawton,.Gasquoine.&.Weimer,.2015,mobi_2monolingual]`, 
+                      `r_Study[Ljungberg,.Hansson.&.Adolfsson,.2016,mobi_2monolingual]`,
+                      `r_Study[Sanders.et.al.,.2012,mobi_2monolingual]`,
+                      `r_Study[Venugopal.et.al.,.2023,mobi_2monolingual]`,
+                      `r_Study[Yeung.et.al.,.2014,mobi_2monolingual]`,
+                      `r_Study[Zahodne.et.al.,.2014,mobi_2monolingual]`,
+                      `r_Study[Lawton,.Gasquoine.&.Weimer,.2015,mobi_2bilingual]`, 
+                      `r_Study[Ljungberg,.Hansson.&.Adolfsson,.2016,mobi_2bilingual]`,
+                      `r_Study[Sanders.et.al.,.2012,mobi_2bilingual]`,
+                      `r_Study[Venugopal.et.al.,.2023,mobi_2bilingual]`,
+                      `r_Study[Yeung.et.al.,.2014,mobi_2bilingual]`,
+                      `r_Study[Zahodne.et.al.,.2014,mobi_2bilingual]`)
+
+# Reshape data to long format for easier handling
+draws_long <- model_draws %>%
+  pivot_longer(
+    cols = starts_with("r_Study"),
+    names_to = c("Study", "Group"),
+    names_pattern = "r_Study\\[(.*),(.*)\\]"
+  )
+
+# Calculate study-specific effects and differences
+draws_diff <- draws_long %>%
+  pivot_wider(names_from = Group, values_from = value) %>%
+  mutate(
+    study_effect_mono = `mobi_2monolingual` + b_mobi_2monolingual,
+    study_effect_bi = `mobi_2bilingual` + b_mobi_2bilingual,
+    difference = study_effect_bi - study_effect_mono
+  ) %>%
+  select(Study, .draw, difference)
+
+# Summarize the differences for each study
+draws_summary <- draws_diff %>%
+  group_by(Study) %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  ungroup()
+
+# Add an overall effect row
+overall_effect <- draws_diff %>%
+  summarise(
+    mean_diff = mean(difference),
+    lower = quantile(difference, 0.025),
+    upper = quantile(difference, 0.975)
+  ) %>%
+  mutate(Study = "Summary_effect")
+
+draws_summary <- bind_rows(draws_summary, overall_effect)
+
+# Generate the forest plot
+ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+  geom_vline(xintercept = 0, size = .25, lty = 2) +  # Vertical line at zero
+  geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
+  geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_text(
+    aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
+    hjust = 0
+  ) +  # Add text labels for each study
+  labs(
+    x = "Difference in Dementia Risk (log-odds)",
+    y = "Study"
+  ) +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8)) +  # Adjust text size if needed
+  coord_cartesian(clip = "off", xlim = c(-2, 2))
+
+```
+
+```{r}
+avg_comparisons(meta_analysismodel_7, variables = "mobi_2", comparison = "ratio")
+```
+
+
+```{r}
+model_draws <- as_draws_df(meta_analysismodel_7)
+names(model_draws)
+```
+
+
+#Rerun the model after removing Venugopal et al. (2023)
+
+```{r}
+Revised_prospective <- read_csv("data/Revised_prospective.csv") %>%
+  mutate(
+    mobi_2 = factor(group, levels = c("monolingual", "bilingual"))
+  )
+
+meta_analysismodel_8 <-brm(
+  Dementia | trials(Total) ~ 0 + mobi_2 + (0 + mobi_2 | Study),
+  data = Revised_prospective,
+  family = binomial(),
+  cores = 4,
+  file = "data/cache/meta_analysismodel_8",
+  seed = 1234
+)
+summary(meta_analysismodel_8)
+```
+
+
+```{r}
+avg_comparisons(meta_analysismodel_8, variables = "mobi_2", comparison = "ratio")
+```
+
+
+
