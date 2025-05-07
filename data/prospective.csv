@@ -1,0 +1,13 @@
+﻿ID,Study,Total,Dementia,proportion,group,YoE,YoESD,Dementia type,,binominal distribution
+1,"Lawton, Gasquoine & Weimer, 2015",1152,54,0.047,monolingual,,,,,
+1,"Lawton, Gasquoine & Weimer, 2015",635,27,0.043,bilingual,,,,,
+2,"Venugopal et al., 2023",431,58,0.135,monolingual,,,,,
+2,"Venugopal et al., 2023",803,46,0.057,bilingual,,,,,
+3,"Ljungberg, Hansson & Adolfsson, 2016",634,102,0.161,monolingual,,,,,
+3,"Ljungberg, Hansson & Adolfsson, 2016",72,10,0.13,bilingual,,,,,
+4,"Sanders et al., 2012",1389,93,0.067,monolingual,,,,,
+4,"Sanders et al., 2012",390,33,0.084,bilingual,,,,,
+5,"Yeung et al., 2014",576,54,0.094,monolingual,,,,,
+5,"Yeung et al., 2014",414,41,0.099,bilingual,,,,,
+6,"Zahodne et al., 2014",637,189,0.297,monolingual,,,,,
+6,"Zahodne et al., 2014",344,86,0.25,bilingual,,,,,
