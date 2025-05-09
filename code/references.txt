@@ -1,0 +1,707 @@
+@article{abutalebi2015neuroprotective,
+  title={The neuroprotective effects of bilingualism upon the inferior parietal lobule: a structural neuroimaging study in aging Chinese bilinguals},
+  author={Abutalebi, Jubin and Canini, Matteo and Della Rosa, Pasquale A and Green, David W and Weekes, Brendan S},
+  journal={Journal of Neurolinguistics},
+  volume={33},
+  pages={3--13},
+  year={2015},
+  publisher={Elsevier}
+}
+
+@article{anderson2020does,
+  title={Does bilingualism protect against dementia? A meta-analysis},
+  author={Anderson, John AE and Hawrylewicz, Kornelia and Grundy, John G},
+  journal={Psychonomic Bulletin \& Review},
+  volume={27},
+  pages={952--965},
+  year={2020},
+  publisher={Springer}
+}
+
+@article{alladi2013bilingualism,
+  title={Bilingualism delays age at onset of dementia, independent of education and immigration status},
+  author={Alladi, Suvarna and Bak, Thomas H and Duggirala, Vasanta and Surampudi, Bapiraju and Shailaja, Mekala and Shukla, Anuj Kumar and Chaudhuri, Jaydip Ray and Kaul, Subhash},
+  journal={Neurology},
+  volume={81},
+  number={22},
+  pages={1938--1944},
+  year={2013},
+  publisher={Lippincott Williams \& Wilkins Hagerstown, MD}
+}
+
+@article{alladi2017bilingualism,
+  title={Bilingualism delays the onset of behavioral but not aphasic forms of frontotemporal dementia},
+  author={Alladi, Suvarna and Bak, Thomas H and Shailaja, Mekala and Gollahalli, Divyaraj and Rajan, Amulya and Surampudi, Bapiraju and Hornberger, Michael and Duggirala, Vasanta and Chaudhuri, Jaydip Ray and Kaul, Subhash},
+  journal={Neuropsychologia},
+  volume={99},
+  pages={207--212},
+  year={2017},
+  publisher={Elsevier}
+}
+@article{arel2024interpret,
+  title={How to interpret statistical models using marginaleffects for R and Python},
+  author={Arel-Bundock, Vincent and Greifer, Noah and Heiss, Andrew},
+  journal={Journal of Statistical Software},
+  volume={111},
+  pages={1--32},
+  year={2024}
+}
+
+@article{bak2016impact,
+  title={The impact of bilingualism on cognitive ageing and dementia: Finding a path through a forest of confounding variables},
+  author={Bak, Thomas H},
+  journal={Linguistic Approaches to Bilingualism},
+  volume={6},
+  number={1-2},
+  pages={205--226},
+  year={2016},
+  publisher={John Benjamins Publishing Company Amsterdam/Philadelphia}
+}
+
+@article{bennett2006neuropathology,
+  title={Neuropathology of older persons without cognitive impairment from two community-based studies},
+  author={Bennett, DA and Schneider, JA and Arvanitakis, Z and Kelly, JF and Aggarwal, NT and Shah, RC and Wilson, RS16801647},
+  journal={Neurology},
+  volume={66},
+  number={12},
+  pages={1837--1844},
+  year={2006},
+  publisher={Lippincott Williams \& Wilkins}
+}
+
+@article{berkes2022bilingualism,
+  title={Bilingualism as a contributor to cognitive reserve: What it can do and what it cannot do},
+  author={Berkes, Matthias and Bialystok, Ellen},
+  journal={American Journal of Alzheimer's Disease \& Other Dementias{\textregistered}},
+  volume={37},
+  pages={15333175221091417},
+  year={2022},
+  publisher={Sage Publications Sage CA: Los Angeles, CA}
+}
+
+@article{berkes2020conversion,
+  title={Conversion of mild cognitive impairment to Alzheimer disease in monolingual and bilingual patients},
+  author={Berkes, Matthias and Bialystok, Ellen and Craik, Fergus IM and Troyer, Angela and Freedman, Morris},
+  journal={Alzheimer Disease \& Associated Disorders},
+  volume={34},
+  number={3},
+  pages={225--230},
+  year={2020},
+  publisher={LWW}
+}
+
+@article{bialystok2007bilingualism,
+  title={Bilingualism as a protection against the onset of symptoms of dementia},
+  author={Bialystok, Ellen and Craik, Fergus I M and Freedman, Morris},
+  journal={Neuropsychologia},
+  volume={45},
+  number={2},
+  pages={459--464},
+  year={2007},
+  publisher={Elsevier}
+}
+
+@article{bialystok2014effects,
+  title={Effects of bilingualism on the age of onset and progression of MCI and AD: evidence from executive function tests.},
+  author={Bialystok, Ellen and Craik, Fergus IM and Binns, Malcolm A and Ossher, Lynn and Freedman, Morris},
+  journal={Neuropsychology},
+  volume={28},
+  number={2},
+  pages={290},
+  year={2014},
+  publisher={American Psychological Association}
+}
+
+@article{bialystok2012bilingualism,
+  title={Bilingualism: consequences for mind and brain},
+  author={Bialystok, Ellen and Craik, Fergus IM and Luk, Gigi},
+  journal={Trends in cognitive sciences},
+  volume={16},
+  number={4},
+  pages={240--250},
+  year={2012},
+  publisher={Elsevier}
+}
+
+@article{blom2014benefits,
+  title={The benefits of being bilingual: Working memory in bilingual Turkish--Dutch children},
+  author={Blom, Elma and K{\"u}ntay, Aylin C and Messer, Marielle and Verhagen, Josje and Leseman, Paul},
+  journal={Journal of experimental child psychology},
+  volume={128},
+  pages={105--119},
+  year={2014},
+  publisher={Elsevier}
+}
+
+@book{borenstein2021introduction,
+  title={Introduction to meta-analysis},
+  author={Borenstein, Michael and Hedges, Larry V and Higgins, Julian PT and Rothstein, Hannah R},
+  year={2021},
+  publisher={John wiley \& sons}
+}
+
+@article{brier2012loss,
+  title={Loss of intranetwork and internetwork resting state functional connections with Alzheimer's disease progression},
+  author={Brier, Mathew R and Thomas, Jewell B and Snyder, Abraham Z and Benzinger, Tammie L and Zhang, Dongyang and Raichle, Marcus E and Holtzman, David M and Morris, John C and Ances, Beau M},
+  journal={Journal of Neuroscience},
+  volume={32},
+  number={26},
+  pages={8890--8899},
+  year={2012},
+  publisher={Society for Neuroscience}
+}
+
+@article{brini2020bilingualism,
+  title={Bilingualism is associated with a delayed onset of dementia but not with a lower risk of developing it: A systematic review with meta-analyses},
+  author={Brini, Stefano and Sohrabi, Hamid R and Hebert, Jeffrey J and Forrest, Mitchell RL and Laine, Matti and H{\"a}m{\"a}l{\"a}inen, Heikki and Karrasch, Mira and Peiffer, Jeremiah J and Martins, Ralph N and Fairchild, Timothy J},
+  journal={Neuropsychology review},
+  volume={30},
+  pages={1--24},
+  year={2020},
+  publisher={Springer}
+}
+
+@article{burkner2021bayesian,
+  title={Bayesian item response modeling in R with brms and Stan},
+  author={B{\"u}rkner, Paul-Christian},
+  journal={Journal of statistical software},
+  volume={100},
+  pages={1--54},
+  year={2021}
+}
+
+@article{calabria2020active,
+  title={Active bilingualism delays the onset of mild cognitive impairment},
+  author={Calabria, Marco and Hern{\'a}ndez, Mireia and Cattaneo, Gabriele and Suades, Anna and Serra, Mariona and Juncadella, Montserrat and Re{\~n}{\'e}, Ram{\'o}n and Sala, Isabel and Lle{\'o}, Alberto and Ortiz-Gil, Jordi and others},
+  journal={Neuropsychologia},
+  volume={146},
+  pages={107528},
+  year={2020},
+  publisher={Elsevier}
+}
+
+@article{chan2001patterns,
+  title={Patterns of temporal lobe atrophy in semantic dementia and Alzheimer's disease},
+  author={Chan, Dennis and Fox, Nick C and Scahill, Rachael I and Crum, William R and Whitwell, Jennifer L and Leschziner, Guy and Rossor, Alex M and Stevens, John M and Cipolotti, Lisa and Rossor, Martin N},
+  journal={Annals of neurology},
+  volume={49},
+  number={4},
+  pages={433--442},
+  year={2001},
+  publisher={Wiley Online Library}
+}
+
+@article{chertkow2010multilingualism,
+  title={Multilingualism (but not always bilingualism) delays the onset of Alzheimer disease: evidence from a bilingual community},
+  author={Chertkow, Howard and Whitehead, Victor and Phillips, Natalie and Wolfson, Christina and Atherton, Julie and Bergman, Howard},
+  journal={Alzheimer Disease \& Associated Disorders},
+  volume={24},
+  number={2},
+  pages={118--125},
+  year={2010},
+  publisher={LWW}
+}
+
+@article{clare2016bilingualism,
+  title={Bilingualism, executive control, and age at diagnosis among people with early-stage A lzheimer's disease in W ales},
+  author={Clare, Linda and Whitaker, Christopher J and Craik, Fergus IM and Bialystok, Ellen and Martyr, Anthony and Martin-Forbes, Pamela A and Bastable, Alexandra JM and Pye, Kirstie L and Quinn, Catherine and Thomas, Enlli M and others},
+  journal={Journal of neuropsychology},
+  volume={10},
+  number={2},
+  pages={163--185},
+  year={2016},
+  publisher={Wiley Online Library}
+}
+
+@article{comishen2021increases,
+  title={Increases in attentional demands are associated with language group differences in working memory performance.},
+  author={Comishen, Kyle J and Bialystok, Ellen},
+  journal={Brain and Cognition},
+  year={2021},
+  publisher={Elsevier Science}
+}
+
+@article{craik2010delaying,
+  title={Delaying the onset of Alzheimer disease: Bilingualism as a form of cognitive reserve},
+  author={Craik, Fergus IM and Bialystok, Ellen and Freedman, Morris},
+  journal={Neurology},
+  volume={75},
+  number={19},
+  pages={1726--1729},
+  year={2010},
+  publisher={Lippincott Williams \& Wilkins Hagerstown, MD}
+}
+
+@article{davis2008pasa,
+  title={Que PASA? The posterior--anterior shift in aging},
+  author={Davis, Simon W and Dennis, Nancy A and Daselaar, Sander M and Fleck, Mathias S and Cabeza, Roberto},
+  journal={Cerebral cortex},
+  volume={18},
+  number={5},
+  pages={1201--1209},
+  year={2008},
+  publisher={Oxford University Press}
+}
+
+@article{duncan2018structural,
+  title={Structural brain differences between monolingual and multilingual patients with mild cognitive impairment and Alzheimer disease: Evidence for cognitive reserve},
+  author={Duncan, Hilary D and Nikelski, Jim and Pilon, Randi and Steffener, Jason and Chertkow, Howard and Phillips, Natalie A},
+  journal={Neuropsychologia},
+  volume={109},
+  pages={270--282},
+  year={2018},
+  publisher={Elsevier}
+}
+
+@article{de2024examining,
+  title={Examining the relation between bilingualism and age of symptom onset in frontotemporal dementia},
+  author={de Leon, Jessica and Grasso, Stephanie M and Allen, Isabel Elaine and Escueta, Danielle P and Vega, Yvette and Eshghavi, Malihe and Watson, Christa and Dronkers, Nina and Gorno-Tempini, Maria Luisa and Henry, Maya L},
+  journal={Bilingualism: Language and Cognition},
+  volume={27},
+  number={2},
+  pages={274--286},
+  year={2024},
+  publisher={Cambridge University Press}
+}
+
+@article{de2020effects,
+  title={Effects of bilingualism on age at onset in two clinical Alzheimer's disease variants},
+  author={de Leon, Jessica and Grasso, Stephanie M and Welch, Ariane and Miller, Zachary and Shwe, Wendy and Rabinovici, Gil D and Miller, Bruce L and Henry, Maya L and Gorno-Tempini, Maria Luisa},
+  journal={Alzheimer's \& Dementia},
+  volume={16},
+  number={12},
+  pages={1704--1713},
+  year={2020},
+  publisher={Wiley Online Library}
+}
+
+@article{de2018age,
+  title={Age differentiation within gray matter, white matter, and between memory and white matter in an adult life span cohort},
+  author={de Mooij, Susanne MM and Henson, Richard NA and Waldorp, Lourens J and Kievit, Rogier A},
+  journal={Journal of Neuroscience},
+  volume={38},
+  number={25},
+  pages={5826--5836},
+  year={2018},
+  publisher={Society for Neuroscience}
+}
+
+@incollection{frank2008mild,
+  author    = {Frank, A. R. and Petersen, R. C.},
+  title     = {Mild cognitive impairment},
+  booktitle = {Handbook of Clinical Neurology},
+  editor    = {Duyckaerts, C. and Litvan, I.},
+  series    = {3rd series},
+  volume    = {89},
+  chapter   = {20},
+  year      = {2008},
+  publisher = {Elsevier}
+}
+
+@article{folstein1975mini,
+  title={“Mini-mental state”: a practical method for grading the cognitive state of patients for the clinician},
+  author={Folstein, Marshal F and Folstein, Susan E and McHugh, Paul R},
+  journal={Journal of psychiatric research},
+  volume={12},
+  number={3},
+  pages={189--198},
+  year={1975},
+  publisher={Pergamon}
+}
+
+@article{fuller2014healthy,
+  title={The healthy migrant effect may confound the link between bilingualism and delayed onset of Alzheimer’s disease.},
+  author={Fuller-Thomson, Esme and Kuh, Diana},
+  year={2014},
+  publisher={Elsevier Masson SAS}
+}
+
+@article{gatz2001education,
+  title={Education and the risk of Alzheimer's disease: findings from the study of dementia in Swedish twins},
+  author={Gatz, Margaret and Svedberg, Pia and Pedersen, Nancy L and Mortimer, James A and Berg, Stig and Johansson, Boo},
+  journal={The Journals of Gerontology Series B: Psychological Sciences and Social Sciences},
+  volume={56},
+  number={5},
+  pages={P292--P300},
+  year={2001},
+  publisher={Oxford University Press}
+}
+
+@article{gollan2012self,
+  title={Self-ratings of spoken language dominance: A Multilingual Naming Test (MINT) and preliminary norms for young and aging Spanish--English bilinguals},
+  author={Gollan, Tamar H and Weissberger, Gali H and Runnqvist, Elin and Montoya, Rosa I and Cera, Cynthia M},
+  journal={Bilingualism: language and cognition},
+  volume={15},
+  number={3},
+  pages={594--615},
+  year={2012},
+  publisher={Cambridge University Press}
+}
+
+@article{grady1994age,
+  title={Age-related changes in cortical blood flow activation during visual processing of faces and location},
+  author={Grady, Cheryl L and Maisog, Jose Ma and Horwitz, Barry and Ungerleider, Leslie G and Mentis, Marc J and Salerno, Judith A and Pietrini, Pietro and Wagner, Elizabeth and Haxby, James V},
+  journal={Journal of Neuroscience},
+  volume={14},
+  number={3},
+  pages={1450--1462},
+  year={1994},
+  publisher={Society for Neuroscience}
+}
+
+@article{grundy2017commentary,
+  title={Commentary: The relationship of bilingualism compared to monolingualism to the risk of cognitive decline or dementia: A systematic review and meta-analysis},
+  author={Grundy, John G and Anderson, John AE},
+  journal={Frontiers in aging neuroscience},
+  volume={9},
+  pages={344},
+  year={2017},
+  publisher={Frontiers Media SA}
+}
+
+@article{hanna2011relation,
+  title={The relation between instrumental musical activity and cognitive aging.},
+  author={Hanna-Pladdy, Brenda and MacKay, Alicia},
+  journal={Neuropsychology},
+  volume={25},
+  number={3},
+  pages={378},
+  year={2011},
+  publisher={American Psychological Association}
+}
+
+@article{hase2018white,
+  title={White matter degeneration in vascular and other ageing-related dementias},
+  author={Hase, Yoshiki and Horsburgh, Karen and Ihara, Masafumi and Kalaria, Raj N},
+  journal={Journal of neurochemistry},
+  volume={144},
+  number={5},
+  pages={617--633},
+  year={2018},
+  publisher={Wiley Online Library}
+}
+
+@article{homer1994swallowing,
+  title={Swallowing in Alzheimer's disease},
+  author={Homer, Jennifer and Alberts, Mark J and Dawson, Deborah V and Cook, Gail M},
+  journal={Alzheimer Disease \& Associated Disorders},
+  volume={8},
+  number={3},
+  pages={177--189},
+  year={1994},
+  publisher={LWW}
+}
+
+@article{jafari2021bilingual,
+  title={Bilingual experience and intrinsic functional connectivity in adults, aging, and Alzheimer's disease},
+  author={Jafari, Zahra and Perani, Daniela and Kolb, Bryan E and Mohajerani, Majid H},
+  journal={Annals of the new York Academy of Sciences},
+  volume={1505},
+  number={1},
+  pages={8--22},
+  year={2021},
+  publisher={Wiley Online Library}
+}
+
+@article{kay2023tidybayes,
+  title={Tidybayes: tidy data and Geoms for Bayesian models (v3. 0.4)},
+  author={Kay, M and Mastny, T},
+  journal={tidybayes: tidy data and “geoms” for bayesian models (3.0. 6)},
+  year={2023}
+}
+
+@article{kepp2016ten,
+  title={Ten challenges of the amyloid hypothesis of Alzheimer’s disease},
+  author={Kepp, Kasper Planeta},
+  journal={Journal of Alzheimer’s Disease},
+  volume={55},
+  number={2},
+  pages={447--457},
+  year={2016},
+  publisher={SAGE Publications Sage UK: London, England}
+}
+
+@article{kowoll2016bilingualism,
+  author    = {Kowoll, M. E. and Degen, C. and Gorenc, L. and Küntzelmann, A. and Fellhauer, I. and Giesel, F. and Schröder, J.},
+  title     = {Bilingualism as a contributor to cognitive reserve? Evidence from cerebral glucose metabolism in mild cognitive impairment and Alzheimer’s disease},
+  journal   = {Frontiers in Psychiatry},
+  volume    = {7},
+  pages     = {62},
+  year      = {2016},
+  doi       = {10.3389/fpsyt.2016.00062}
+}
+
+@article{lawton2015age,
+  author    = {Lawton, D. M. and Gasquoine, P. G. and Weimer, A. A.},
+  title     = {Age of dementia diagnosis in community dwelling bilingual and monolingual Hispanic Americans},
+  journal   = {Cortex},
+  volume    = {66},
+  pages     = {141--145},
+  year      = {2015},
+  doi       = {10.1016/j.cortex.2015.02.003}
+}
+
+@article{lee2022bilingualism,
+  author    = {Lee, Y.-Y.},
+  title     = {Bilingualism, Dementia, and the Neurological Mechanisms in Between: The Need for a More Critical Look Into Dementia Subtypes},
+  journal   = {Frontiers in Aging Neuroscience},
+  volume    = {14},
+  pages     = {872508},
+  year      = {2022},
+  doi       = {10.3389/fnagi.2022.872508}
+}
+
+@book{light1984summing,
+  author    = {Light, R. J. and Pillemer, D. B.},
+  title     = {Summing Up: The Science of Reviewing Research},
+  publisher = {Harvard University Press},
+  year      = {1984}
+}
+
+@article{massoud2010update,
+  author    = {Massoud, F. and Gauthier, S.},
+  title     = {Update on the pharmacological treatment of Alzheimer's disease},
+  journal   = {Current Neuropharmacology},
+  volume    = {8},
+  number    = {1},
+  pages     = {69--80},
+  year      = {2010}
+}
+
+@article{meda2013genetic,
+  author    = {Meda, S. A. and Koran, M. E. I. and Pryweller, J. R. and Vega, J. N. and Thornton-Wells, T. A.},
+  title     = {Genetic interactions associated with 12-month atrophy in hippocampus and entorhinal cortex in Alzheimer’s disease},
+  journal   = {Neurobiology of Aging},
+  volume    = {34},
+  pages     = {9--18},
+  year      = {2013},
+  doi       = {10.1016/j.neurobiolaging.2012.09.020}
+}
+
+@article{mendez2020bilingualism,
+  author    = {Mendez, M. F. and Chavez, D. and Akhlaghipour, G.},
+  title     = {Bilingualism delays expression of Alzheimer’s clinical syndrome},
+  journal   = {Dementia and Geriatric Cognitive Disorders},
+  volume    = {48},
+  number    = {5-6},
+  pages     = {281--289},
+  year      = {2020}
+}
+
+@article{mukadam2017relationship,
+  author    = {Mukadam, N. and Sommerlad, A. and Livingston, G.},
+  title     = {The relationship of bilingualism compared to monolingualism to the risk of cognitive decline or dementia: a systematic review and meta-analysis},
+  journal   = {Journal of Alzheimer's Disease},
+  volume    = {58},
+  number    = {1},
+  pages     = {45--54},
+  year      = {2017}
+}
+
+@book{nicenboim2024introduction,
+  author    = {Nicenboim, B. and Schad, D. and Vasishth, S.},
+  title     = {An Introduction to Bayesian Data Analysis for Cognitive Science},
+  note      = {Under contract with Chapman and Hall/CRC statistics in the social and behavioral sciences series},
+  year      = {2024}
+}
+
+@article{ossher2013effect,
+  author    = {Ossher, L. and Bialystok, E. and Craik, F. I. and Murphy, K. J. and Troyer, A. K.},
+  title     = {The effect of bilingualism on amnestic mild cognitive impairment},
+  journal   = {Journals of Gerontology Series B: Psychological Sciences and Social Sciences},
+  volume    = {68},
+  number    = {1},
+  pages     = {8--12},
+  year      = {2013}
+}
+
+@incollection{paap2019bilingual,
+  author    = {Paap, K.},
+  title     = {The bilingual advantage debate: Quantity and quality of the evidence},
+  booktitle = {The Handbook of the Neuroscience of Multilingualism},
+  pages     = {701--735},
+  year      = {2019}
+}
+
+@article{perani2017impact,
+  author    = {Perani, D. and Farsad, M. and Ballarini, T. and Lubian, F. and Malpetti, M. and Fracchetti, A. and Abutalebi, J.},
+  title     = {The impact of bilingualism on brain reserve and metabolic connectivity in Alzheimer's dementia},
+  journal   = {Proceedings of the National Academy of Sciences},
+  volume    = {114},
+  number    = {7},
+  pages     = {1690--1695},
+  year      = {2017}
+}
+
+@article{ramakrishnan2017comparative,
+  author    = {Ramakrishnan, S. and Mekala, S. and Mamidipudi, A. and Yareeda, S. and Mridula, R. and Bak, T. H. and Kaul, S.},
+  title     = {Comparative effects of education and bilingualism on the onset of mild cognitive impairment},
+  journal   = {Dementia and Geriatric Cognitive Disorders},
+  volume    = {44},
+  number    = {3-4},
+  pages     = {222--231},
+  year      = {2017}
+}
+
+@article{scarmeas2003cognitive,
+  author    = {Scarmeas, N. and Stern, Y.},
+  title     = {Cognitive reserve and lifestyle},
+  journal   = {Journal of Clinical and Experimental Neuropsychology},
+  volume    = {25},
+  number    = {5},
+  pages     = {625--633},
+  year      = {2003}
+}
+
+@incollection{schmid2020bayesian,
+  author    = {Schmid, C. H. and Carlin, B. P. and Welton, N. J.},
+  title     = {Bayesian methods for meta-analysis},
+  booktitle = {Handbook of Meta-Analysis},
+  pages     = {91--128},
+  publisher = {Chapman and Hall/CRC},
+  year      = {2020}
+}
+
+@article{sedgwick2015how,
+  author    = {Sedgwick, P. and Marston, L.},
+  title     = {How to read a funnel plot in a meta-analysis},
+  journal   = {BMJ},
+  volume    = {351},
+  year      = {2015}
+}
+
+@article{sharp2011relationship,
+  author    = {Sharp, E. S. and Gatz, M.},
+  title     = {Relationship between education and dementia: an updated systematic review},
+  journal   = {Alzheimer Disease & Associated Disorders},
+  volume    = {25},
+  number    = {4},
+  pages     = {289--304},
+  year      = {2011}
+}
+
+@article{sofi2011physical,
+  author    = {Sofi, F. and Valecchi, D. and Bacci, D. and Abbate, R. and Gensini, G. F. and Casini, A. and Macchi, C.},
+  title     = {Physical activity and risk of cognitive decline: a meta‐analysis of prospective studies},
+  journal   = {Journal of Internal Medicine},
+  volume    = {269},
+  number    = {1},
+  pages     = {107--117},
+  year      = {2011}
+}
+
+@article{stern2002what,
+  author    = {Stern, Y.},
+  title     = {What is cognitive reserve? Theory and research application of the reserve concept},
+  journal   = {Journal of the International Neuropsychological Society},
+  volume    = {8},
+  number    = {3},
+  pages     = {448--460},
+  year      = {2002}
+}
+
+@article{stern2012cognitive,
+  author    = {Stern, Y.},
+  title     = {Cognitive reserve in ageing and Alzheimer's disease},
+  journal   = {The Lancet Neurology},
+  volume    = {11},
+  number    = {11},
+  pages     = {1006--1012},
+  year      = {2012}
+}
+
+@article{stern1999rate,
+  author    = {Stern, Y. and Albert, S. and Tang, M. X. and Tsai, W. Y.},
+  title     = {Rate of memory decline in AD is related to education and occupation: Cognitive reserve?},
+  journal   = {Neurology},
+  volume    = {53},
+  pages     = {1942--1947},
+  year      = {1999}
+}
+
+@article{stern2020whitepaper,
+  author    = {Stern, Y. and Arenaza‐Urquijo, E. M. and Bartrés‐Faz, D. and Belleville, S. and Cantilon, M. and Chetelat, G. and ... and Reserve, Resilience and Protective Factors PIA Empirical Definitions and Conceptual Frameworks Workgroup},
+  title     = {Whitepaper: Defining and investigating cognitive reserve, brain reserve, and brain maintenance},
+  journal   = {Alzheimer's & Dementia},
+  volume    = {16},
+  number    = {9},
+  pages     = {1305--1311},
+  year      = {2020}
+}
+
+@article{thierry2007brain,
+  author    = {Thierry, G. and Wu, Y. J.},
+  title     = {Brain potentials reveal unconscious translation during foreign-language comprehension},
+  journal   = {Proceedings of the National Academy of Sciences},
+  volume    = {104},
+  number    = {30},
+  pages     = {12530--12535},
+  year      = {2007}
+}
+
+@article{venugopal2024protective,
+  author    = {Venugopal, A. and Paplikar, A. and Varghese, F. A. and Thanissery, N. and Ballal, D. and Hoskeri, R. M. and ... and Alladi, S.},
+  title     = {Protective effect of bilingualism on aging, MCI, and dementia: A community‐based study},
+  journal   = {Alzheimer's & Dementia},
+  volume    = {20},
+  number    = {4},
+  pages     = {2620--2631},
+  year      = {2024}
+}
+
+@article{waldie2009neural,
+  author    = {Waldie, K. E. and Badzakova-Trajkov, G. and Miliivojevic, B. and Kirk, I. J.},
+  title     = {Neural activity during Stroop colour-word task performance in late proficient bilinguals: a functional magnetic resonance imaging study},
+  journal   = {Psychology & Neuroscience},
+  volume    = {2},
+  pages     = {125--136},
+  year      = {2009}
+}
+
+@misc{who2020dementia,
+  author    = {World Health Organization},
+  title     = {Dementia},
+  howpublished = {\url{http://www.who.int/en/news-room/fact-sheets/detail/dementia}},
+  year      = {2020}
+}
+
+@article{woumans2015bilingualism,
+  author    = {Woumans, E. V. Y. and Santens, P. and Sieben, A. and Versijpt, J. A. N. and Stevens, M. and Duyck, W.},
+  title     = {Bilingualism delays clinical manifestation of Alzheimer's disease},
+  journal   = {Bilingualism: Language and Cognition},
+  volume    = {18},
+  number    = {3},
+  pages     = {568--574},
+  year      = {2015}
+}
+
+@article{woumans2017bilingualism,
+  author    = {Woumans, E. and Versijpt, J. and Sieben, A. and Santens, P. and Duyck, W.},
+  title     = {Bilingualism and cognitive decline: a story of pride and prejudice},
+  journal   = {Journal of Alzheimer's Disease},
+  volume    = {60},
+  number    = {4},
+  pages     = {1237--1239},
+  year      = {2017}
+}
+
+@article{zahodne2014bilingualism,
+  author    = {Zahodne, L. B. and Schofield, P. W. and Farrell, M. T. and Stern, Y. and Manly, J. J.},
+  title     = {Bilingualism does not alter cognitive decline or dementia risk among Spanish-speaking immigrants},
+  journal   = {Neuropsychology},
+  volume    = {28},
+  number    = {2},
+  pages     = {238},
+  year      = {2014}
+}
+
+@article{zheng2018protective,
+  author    = {Zheng, Y. and Wu, Q. and Su, F. and Fang, Y. and Zeng, J. and Pei, Z.},
+  title     = {The protective effect of Cantonese/Mandarin bilingualism on the onset of Alzheimer disease},
+  journal   = {Dementia and Geriatric Cognitive Disorders},
+  volume    = {45},
+  number    = {3-4},
+  pages     = {210--219},
+  year      = {2018}
+}
+

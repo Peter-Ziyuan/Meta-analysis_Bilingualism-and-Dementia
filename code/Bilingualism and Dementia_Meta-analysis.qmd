@@ -6,6 +6,8 @@ output:
   word_document: default
   html_document: default
   pdf_document: default
+bibliography: references.bib
+csl: apa.csl
 ---
 
 ```{r setup, include=FALSE}
