@@ -1,11 +1,18 @@
 ---
-title: "Bilingualism and Dementia_A Bayesian Meta-analysis"
+title: "Bilingualism and Dementia: A Bayesian Meta-analysis"
 author: "Ziyuan Li"
 date: "2024-06-24"
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
+format:
+  pdf:
+    pdf-engine: lualatex
+    mainfont: "Times New Roman"
+    fontsize: 12pt
+    linestretch: 1.5
+    toc: true
+    toc-location: end
+    number-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
 bibliography: references.bib
 csl: apa.csl
 ---
@@ -122,7 +129,6 @@ Shown in Figure 2, a total of 24 studies were included through searching the dat
 
 To fit in the Bayesian meta-analysis model, the researcher retrieved the summary data from each study including the age at onset/diagnosis including standard deviation, number of individuals in bilingual and monolingual groups, years of education for each group, and dementia types in each study. One special case is that @zheng2018 included two monolingual groups: Mandarin and Cantonese. Different from previous meta-analyses to combine them into one monolingual group [@brini2020], the Bayesian linear model allows for two monolingual groups and one bilingual group. For the age at onset/diagnosis model, the final included sample was 23 pairs of participants (N = 3674, including 2023 monolinguals and 1641 bilinguals).
 
-#### Read data for age at onset studies
 
 ```{r read-data, echo=FALSE, include=FALSE}
 retrospective_2 <- read_csv("data/retrospective.csv") %>% 
@@ -146,8 +152,6 @@ meta_analysismodel_1_priors <- c(
 ```
 
 ### Results for Meta-analysis of Bilingualism and Age at Onset of Dementia
-
-#### Fit the model with the group-level intercept "Study"
 
 ```{r echo=FALSE, include=FALSE}
 meta_analysismodel_1 <- brm(
@@ -179,7 +183,6 @@ names(model_draws)
 
 ```
 
-#Forest plot for the main Meta-analysis
 
 ```{r echo=FALSE, include=FALSE}
 # Extract draws using the correct variable names
@@ -224,7 +227,8 @@ draws <- spread_draws(meta_analysismodel_1,
                       `r_Study[Zheng.et.al.2018,mobibilingual]`)
 ```
 
-```{r echo=FALSE,fig.show='hold'}
+```{r fig:fig3, echo=FALSE, fig.show='hold', fig.cap="Forest plot of Bilingualism and Age at Onset of Dementia\n(Note: The estimates and 95% CrI are the differences between bilinguals and monolinguals, so a positive number indicates later onsets for bilinguals.)"}
+
 draws_long <- draws %>%
   pivot_longer(
     cols = starts_with("r_Study"),
@@ -276,7 +280,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     title = "Forest Plot of Meta-analytic Effects",
     x = "Difference in Age at Onset",
     y = "Study",
-    caption = "Fig. 3. Forest plot of Bilingualism and Age at Onset of Dementia\n(Note: The estimates and 95% CrI are the differences between bilinguals and monolinguals, so a positive number indicates later onsets for bilinguals.)"
+    caption = "Forest plot of Bilingualism and Age at Onset of Dementia\n(Note: The estimates and 95% CrI are the differences between bilinguals and monolinguals, so a positive number indicates later onsets for bilinguals.)"
   ) +
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) + 
@@ -326,7 +330,7 @@ Additionally, the estimated mean age at dementia onsets for monolingual and bili
 
 ### Sub-group Analysis of Dementia type
 
-#### Table 1. Cross-sectional Studies of Three Dementia Sub-groups
+Table: (**#tab-crosssectional**) Cross-sectional Studies of Three Dementia Sub-groups
 
 | Study | Dementia Diagnosis | Type of Dementia or MCI | Mean Age of Diagnosis & Symptom Onset (SD) |
 |----------------|-------------------|----------------|---------------------|
@@ -359,7 +363,6 @@ NINCDS-ADRDA = National Institute on Aging-Alzheimer’s Association consensus c
 
 The sub-group analysis was used to compare whether the difference of the age at onset of dementia between bilinguals and monolinguals was different across different types of dementia. The studies were divided into three sub-groups: AD dementia sub-group (including 14 studies), FTD dementia sub-group (including 3 studies), and MCI sub-group (including 3 studies). The total number of studies was 20 because two studies [@alladi2013; @berkes2020] involved more than one type of dementia. For each sub-group, a Bayesian linear regression model which is similar to the main meta-analysis was employed with the same priors that had been set before (see Appendix II for forest plots of the three sub-groups).
 
-#AD
 
 ```{r echo=FALSE, include=FALSE}
 AD <- read.csv("data/AD.csv") %>% mutate(
@@ -390,7 +393,6 @@ model_draws <- as_draws_df(meta_analysismodel_3)
 names(model_draws)
 ```
 
-#Forest plot for AD sub-group
 
 ```{r echo=FALSE, include=FALSE}
 # Extract draws using the correct variable names
@@ -425,7 +427,7 @@ draws <- spread_draws(meta_analysismodel_3,
                       `r_Study[Zheng.et.al.2018,mobibilingual]`)
 ```
 
-```{r echo=FALSE}
+```{r fig:fig5, echo=FALSE, fig.show='hold', fig.cap="AD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"}
 # Reshape data to long format for easier handling
 draws_long <- draws %>%
   pivot_longer(
@@ -478,7 +480,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     title = "Forest Plot of Meta-analytic Effect in AD Sub-group ",
     x = "Difference in Age at Onset",
     y = "Study",
-    caption = "Fig.5. AD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
+    caption = "AD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
   ) +
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) + # Adjust text size if needed
@@ -487,7 +489,6 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
 
 For the AD dementia sub-group, the results showed that at the population-level, monolinguals had an age at AD onset at 70.39 years with a 95%Crl \[66.90, 73.33\] while the age at AD onset for bilinguals was 73.68 with a 95%Crl \[70.59, 76.69\]. The mean average difference between the age at AD onset for bilinguals and monolinguals was 3.36 with a 95%Crl \[2.61, 4.15\]. Compared with the main meta-analytic results, the estimated age at AD onset was higher for both monolingual and bilingual populations. Yet, the difference between bilinguals’ and monolinguals’ age at onset (3.36-year) was smaller although very close to the main effect (3.45-year). Moreover, the level of heterogeneity decreased moderately compared with the mean meta-analytic results since the group-level estimated effects for mobimonolingual and mobibilingual were 6.09 and 5.57.
 
-#FTD
 
 ```{r echo=FALSE, include=FALSE}
 FTD <- read.csv("data/FTD.csv") %>% mutate(
@@ -508,7 +509,6 @@ meta_analysismodel_4 <- brm(
 summary(meta_analysismodel_4)
 ```
 
-#Forest plot for FTD sub-group
 
 ```{r echo=FALSE, include=FALSE}
 model_draws1 <- as_draws_df(meta_analysismodel_4)
@@ -528,7 +528,7 @@ draws <- spread_draws(meta_analysismodel_4,
                       `r_Study[de.Leon.et.al.2024,mobibilingual]`)
 ```
 
-```{r echo=FALSE}
+```{r fig:fig6, echo=FALSE, fig.show='hold', fig.cap="FTD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"}
 draws_long <- draws %>%
   pivot_longer(
     cols = starts_with("r_Study"),
@@ -580,7 +580,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     title = "Forest Plot of Meta-analytic Effect in FTD Sub-group ",
     x = "Difference in Age at Onset",
     y = "Study",
-    caption = "Fig.6. FTD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
+    caption = "FTD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
   ) +
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) + 
@@ -593,7 +593,6 @@ avg_comparisons(meta_analysismodel_4, variables = "mobi")
 
 For FTD dementia sub-group, the estimated age at FTD onsets for monolinguals and bilinguals were 58.02 with a 95%Crl \[52.95, 62.84\] and 61.44 with a 95%Crl \[57.01, 64.35\], which were largely lower than the main meta-analytic effect and AD sub-group’s onset. Using avg_comparisons() again, the average difference in marginal effects for bilinguals and monolinguals was 3.76 with a 95%Crl \[1.46, 6.26\]. This showed that bilinguals were 3.76 years older than monolinguals when having the first symptom onset for FTD type of dementia. The heterogeneity level was even lower in this group as since the group-level estimated effects for mobimonolingual and mobibilingual were 2.92 and 1.61. Yet, the relatively low number of studies might have contributed to the low heterogeneity and the wide 95%Crl of the estimated difference between bilinguals and monolinguals at the population level.
 
-#MCI
 
 ```{r echo=FALSE, include=FALSE}
 MCI <- read.csv("data/MCI.csv") %>% mutate(
@@ -614,7 +613,6 @@ meta_analysismodel_5 <- brm(
 summary(meta_analysismodel_5)
 ```
 
-#Forest plot for MCI sub-group
 
 ```{r echo=FALSE, include=FALSE}
 model_draws2 <- as_draws_df(meta_analysismodel_5)
@@ -632,7 +630,7 @@ draws <- spread_draws(meta_analysismodel_5,
                       `r_Study[Ramakrishnan.et.al.2017,mobibilingual]`)
 ```
 
-```{r echo=FALSE}
+```{r fig:fig7, echo=FALSE, fig.show='hold', fig.cap="MCI subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"}
 draws_long <- draws %>%
   pivot_longer(
     cols = starts_with("r_Study"),
@@ -684,7 +682,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     title = "Forest Plot of Meta-analytic Effects in MCI sub-group",
     x = "Difference in Age at Onset",
     y = "Study",
-    caption = "Fig.7. FTD subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
+    caption = "MCI subgroup: Forest plot of Bilingualism and Age at Onset of Dementia"
   ) +
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) + 
@@ -699,7 +697,7 @@ For the MCI sub-group, the estimated age at MCI onsets was 68.52 (95%Crl \[54.91
 
 Comparing the three sub-groups at the population-level, it could be found that the AD sub-group had the latest age at onset for both bilinguals and monolinguals while the FTD sub-group had the earliest. For the difference between the age at onset of bilinguals and monolinguals, the FTD sub-group had the largest difference following the AD sub-group. The MCI sub-group’s difference was quite smaller than the two. Additionally, the difference in heterogeneity among the groups may account for the relatively large heterogeneity in the main meta-analysis. These results will be further discussed in the discussion section.
 
-## 4.4 Addressing Bias
+## Addressing Bias
 
 ```{r echo=FALSE, include=FALSE}
 # Extract draws using the correct variable names
@@ -826,11 +824,10 @@ create_funnel_plot(draws_summary, overall_effect$mean_diff, overall_effect$lower
 
 ```
 
-![](images/funnel-sd-diff2.png){fig-align="center"}
+![Funnel plot showing standard deviation differences between bilinguals and monolinguals in age at onset of dementia.](images/funnel-sd-diff2.png){#fig-funnel-sd fig-align="center"}
+
 
 Potential bias in the meta-analytic estimates was accessed using the funnel plot method [@light1984]. The following funnel plot shows the mean estimated difference of age at onset for each study on the x-axis and their estimated error on the y-axis. The shaded light blue area is the 95% CI of the meta-analytic effect of the mean estimated difference of age at onset. The vertical line is the summary meta-analytic effect. As shown in the plot (Figure 5), the dots are not symmetrically distributed around the summary effect although the number of studies in the left side of the summary effect is the same as the right side. Moreover, two studies on the left [@duncan2018; @chertkow2010] and one study on the right [@perani2017] were not covered in the funnel shape. This means that there is potential bias caused by the selected studies. Therefore, it was necessary to check whether the meta-analytic effect was greatly influenced by potential bias.
-
-#### Rerun the model after removing the studies that fall out of the funnel shape
 
 ```{r echo=FALSE, include=FALSE}
 revised_retrospective <- read.csv("data/revised_retrospective.csv") %>% mutate(
@@ -866,7 +863,6 @@ prospective <- read_csv("data/prospective.csv") %>%
   )
 ```
 
-##fit model
 
 ```{r echo=FALSE, include=FALSE}
 meta_analysismodel_7 <-brm(
@@ -885,7 +881,6 @@ summary(meta_analysismodel_7)
 plot(meta_analysismodel_7, ask = FALSE)
 ```
 
-#Drawing forest plot for incidence rates study
 
 ```{r echo=FALSE, include=FALSE}
 model_draws <- spread_draws(meta_analysismodel_7, 
@@ -905,7 +900,7 @@ model_draws <- spread_draws(meta_analysismodel_7,
                       `r_Study[Zahodne.et.al.,.2014,mobi_2bilingual]`)
 ```
 
-```{r echo=FALSE}
+```{r fig9, echo=FALSE, fig.show='hold', fig.cap="Forest plot of the estimated difference in dementia risk between bilinguals and monolinguals in each study."}
 # Reshape data to long format for easier handling
 draws_long <- model_draws %>%
   pivot_longer(
@@ -957,7 +952,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
   labs(
     x = "Difference in Dementia Risk (log-odds)",
     y = "Study",
-    caption = "Fig.9.  Forest plot of the estimated difference in dementia risk between bilinguals and monolinguals in each study "
+    caption = "Figure 9:Forest plot of the estimated difference in dementia risk between bilinguals and monolinguals in each study "
   ) +
   theme_minimal() +
   theme(axis.text.y = element_text(size = 8)) +  # Adjust text size if needed
@@ -978,7 +973,7 @@ The results showed that the population-level estimate for monolingual is -2.06 w
 
 Nevertheless, a detailed inspection of the context of these studies and the forest plot revealed that one study had great influence on the results [@venugopal2024]. The estimated difference in dementia risk of bilinguals and monolinguals is between -1.27 and -0.43 log-odds at 95% probability, which corresponds to 21.9% and 39.4% lower probability for bilinguals [@venugopal2024]. The study design of this community-based study is a corss-sectional study, which is different from the other five longitudinal studies. Considering such difference, we reran the Bayesian model without @venugopal2024. The results showed that the average incidence rates for bilinguals is about 86.6% of the incidence rate of monolinguals with a 95% Crl \[0.634, 1.5\]. This means that we are relatively uncertain about whether bilinguals have a lower incidence rate than monolinguals at the population-level, since the 95% credible interval cross 1.
 
-#Rerun the model after removing @venugopal2024
+
 
 ```{r echo=FALSE, include=FALSE}
 Revised_prospective <- read_csv("data/Revised_prospective.csv") %>%
@@ -1036,3 +1031,13 @@ One potential limitation of the present thesis is that it does not view bilingua
 # Conclusion
 
 This meta-analysis investigated the correlates of bilingualism and the age at onset and incidence rates of dementia respectively. The results of age at onset part provided evidence for the potential bilingualism effect on delaying the onset of dementia that bilinguals are 3.45 years later than monolinguals when the symptoms appear. Moreover, it revealed that education does not strongly influence the link between bilingualism and dementia. The sub-group analysis provided evidence that the types of dementia may influence the relation between bilingualism and the age at onset of dementia, which calls on more research into different subtypes of dementia. In contrast, the results of the incidence rates study did not support that bilingualism prevents dementia from happening. Yet, we did not reach @mukadam2017 conclusion that bilingualism has no effect on protecting against cognitive decline. Instead, the results support that bilingualism has potential protective effects on delaying the onset of dementia rather than preventing dementia. The present meta-analysis also demonstrated the effectiveness of Bayesian meta-analysis as a systematic statistical model in carrying out bilingualism research.
+
+
+
+\listoftables
+
+
+\listoffigures
+
+# References
+
