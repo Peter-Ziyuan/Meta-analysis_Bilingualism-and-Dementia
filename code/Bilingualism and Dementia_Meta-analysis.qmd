@@ -22,20 +22,15 @@ date: "2024-06-24"
 format:
   tandf-pdf:
     pdf-engine: xelatex
-    # mainfont: "Times New Roman"
-    # fontsize: 12pt
-    # linestretch: 1.5
-    # toc: true
-    # toc-location: end
-    # number-sections: true
-    # fig-cap-location: bottom
-    # tbl-cap-location: top
+  tandf-docx: default
 bibliography: references.bib
 csl: apa.csl
 execute: 
   echo: false
   message: false
   warning: false
+abstract: |
+  You should write a max-250 words abstract.
 ---
 
 ```{r setup, include=FALSE}
@@ -1039,5 +1034,9 @@ One potential limitation of the present thesis is that it does not view bilingua
 # Conclusion
 
 This meta-analysis investigated the correlates of bilingualism and the age at onset and incidence rates of dementia respectively. The results of age at onset part provided evidence for the potential bilingualism effect on delaying the onset of dementia that bilinguals are 3.45 years later than monolinguals when the symptoms appear. Moreover, it revealed that education does not strongly influence the link between bilingualism and dementia. The sub-group analysis provided evidence that the types of dementia may influence the relation between bilingualism and the age at onset of dementia, which calls on more research into different subtypes of dementia. In contrast, the results of the incidence rates study did not support that bilingualism prevents dementia from happening. Yet, we did not reach @mukadam2017 conclusion that bilingualism has no effect on protecting against cognitive decline. Instead, the results support that bilingualism has potential protective effects on delaying the onset of dementia rather than preventing dementia. The present meta-analysis also demonstrated the effectiveness of Bayesian meta-analysis as a systematic statistical model in carrying out bilingualism research.
+
+# **Data availability statement**  {.unnumbered}
+
+The Research Compendium of this study, including data and code, can be found at <https://github.com/Peter-Ziyuan/Meta-analysis_Bilingualism-and-Dementia>.
 
 # References
