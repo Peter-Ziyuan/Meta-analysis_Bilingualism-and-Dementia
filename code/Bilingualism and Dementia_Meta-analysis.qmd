@@ -1037,6 +1037,10 @@ This meta-analysis investigated the correlates of bilingualism and the age at on
 
 # **Data availability statement**  {.unnumbered}
 
+
 The Research Compendium of this study, including data and code, can be found at <https://github.com/Peter-Ziyuan/Meta-analysis_Bilingualism-and-Dementia>.
+
+# **Disclosure Statement**:{.unnumbered}
+ The authors report no conflicts of interest.
 
 # References
