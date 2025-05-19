@@ -24,6 +24,7 @@ format:
   tandf-pdf:
     pdf-engine: xelatex
   tandf-docx: default
+  
 bibliography: references.bib
 csl: apa.csl
 execute: 
@@ -169,7 +170,7 @@ meta_analysismodel_1_priors <- c(
 )
 ```
 
-### Results for Meta-analysis of Bilingualism and Age at Onset of Dementia
+## Results for Meta-analysis of Bilingualism and Age at Onset of Dementia
 
 ```{r echo=FALSE, include=FALSE}
 meta_analysismodel_1 <- brm(
@@ -322,7 +323,7 @@ As illustrated in @fig-fig4, the studies seemed to be divided into three groups 
 
 A careful investigation into the contexts of each study provided some potential evidence for such heterogeneity. One prominent difference between the first and second groups of studies might be the type of dementia. Among the 6 studies in the second group, three of them involved the FTD variant of dementia, one of them involved MCI patients and the other two involved AD patients. In contrast, seven out of eight studies in the first group and all of the four studies in the third group involved AD patients despite one study having MCI patients. Such differences in the distribution of types of dementia among different groups of studies further called for subgroup analysis of different types of dementia and to investigate whether the type of dementia influences the differences in age at onset of dementia in bilinguals and monolinguals (see 4.3.3).
 
-## The Role of Education is Uncertain
+### The Role of Education is Uncertain
 
 ```{r echo=FALSE, include=FALSE}
 meta_analysismodel_2 <- brm(
@@ -491,7 +492,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     hjust = 0, size = 2
   ) +  # Add text labels for each study
   labs(
-    title = "Forest Plot of Meta-analytic Effect in AD Subgroup ",
+    title = "Meta-analytic Effect in AD Subgroup ",
     x = "Difference in Age at Onset",
     y = "Study",
   ) +
@@ -588,7 +589,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     hjust = 0, size = 3
   ) + 
   labs(
-    title = "Forest Plot of Meta-analytic Effect in FTD Subgroup ",
+    title = "Meta-analytic Effect in FTD Subgroup ",
     x = "Difference in Age at Onset",
     y = "Study",
   ) +
@@ -687,7 +688,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     hjust = 0, size = 3
   ) + 
   labs(
-    title = "Forest Plot of Meta-analytic Effects in MCI Subgroup",
+    title = "Meta-analytic Effects in MCI Subgroup",
     x = "Difference in Age at Onset",
     y = "Study",
   ) +
@@ -954,6 +955,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
     hjust = 0, size = 3
   ) +  # Add text labels for each study
   labs(
+    title = "Forest Plot of Meta-analytic Effects",
     x = "Difference in Dementia Risk (log-odds)",
     y = "Study",
   ) +
@@ -972,7 +974,7 @@ model_draws <- as_draws_df(meta_analysismodel_7)
 names(model_draws)
 ```
 
-The results showed that the population-level estimate for monolingual is -2.06 with a 95%Crl \[-3.05, -1.16\] and that the estimate for bilingual is -2.27 with a 95%Crl \[-3.09, -1.47\]. We also used avg_comparison() to show the ratio of the average predicted probability of dementia for bilinguals to the average predicted probability of dementia for monolinguals, which resulted in a 0.845 estimate with a 95%Crl \[0.726, 0.984\]. This indicated that the average predicted probability of dementia for bilingual individuals was from 72.6% to 98.4% of the average predicted probability of dementia for monolinguals. In other words, the meta-analytic effect was likely to fall between 1.6% and 27.4% lower incidence for bilinguals compared with monolinguals based on the included 6 studies. This is a small to moderate effect for bilingualism (see Figure 9 for forest plot). It is possible that such a result was influenced by bias given the relatively small number of studies. Yet, the funnel plot is believed not to be reliable if the number of studies is under 10 [@sedgwick2015]. Therefore, the present thesis did not use funnel plot to address the potential bias.
+To investigate whether bilingualism is associated with reduced dementia risks, we fitted a Bayesian hierarchical logistic regression model predicting the number of dementia cases out of total number of participants using a binomial likelihood. The results showed that the population-level estimate for monolingual is -2.06 with a 95%Crl \[-3.05, -1.16\] and that the estimate for bilingual is -2.27 with a 95%Crl \[-3.09, -1.47\]. We also used avg_comparison() to show the ratio of the average predicted probability of dementia for bilinguals to the average predicted probability of dementia for monolinguals, which resulted in a 0.845 estimate with a 95%Crl \[0.726, 0.984\]. This indicated that the average predicted probability of dementia for bilingual individuals was from 72.6% to 98.4% of the average predicted probability of dementia for monolinguals. In other words, the meta-analytic effect was likely to fall between 1.6% and 27.4% lower incidence for bilinguals compared with monolinguals based on the included 6 studies. This is a small to moderate effect for bilingualism (see @fig-fig9 for forest plot). It is possible that such a result was influenced by bias given the relatively small number of studies. Yet, the funnel plot is believed not to be reliable if the number of studies is under 10 [@sedgwick2015]. Therefore, the present thesis did not use funnel plot to address the potential bias.
 
 Nevertheless, a detailed inspection of the context of these studies and the forest plot (@fig-fig9) revealed that one study had great influence on the results [@venugopal2024]. The estimated difference in dementia risk of bilinguals and monolinguals is between -1.27 and -0.43 log-odds at 95% probability, which corresponds to 21.9% and 39.4% lower probability for bilinguals [@venugopal2024]. The study design of this community-based study is a corss-sectional study, which is different from the other five longitudinal studies. Considering such difference, we reran the Bayesian model without @venugopal2024. The results showed that the average incidence rates for bilinguals is about 86.6% of the incidence rate of monolinguals with a 95% Crl \[0.634, 1.5\]. This means that we are relatively uncertain about whether bilinguals have a lower incidence rate than monolinguals at the population-level, since the 95% credible interval cross 1.
 
