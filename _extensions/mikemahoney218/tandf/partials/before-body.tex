@@ -12,6 +12,11 @@ $if(beamer)$
 \frame{\titlepage}
 $else$
 \maketitle
+$for(author)$
+$if(author.corresponding)$
+\noindent\textbf{Contact:} $author.name$. Email: \texttt{$author.email$}
+$endif$
+$endfor$
 $endif$
 $by-affiliation:_affiliations.tex()[\\ ]$
 $if(abstract)$
