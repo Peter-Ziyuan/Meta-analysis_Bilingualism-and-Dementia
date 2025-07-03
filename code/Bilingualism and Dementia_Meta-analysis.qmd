@@ -1,7 +1,7 @@
 ---
 title: "Bilingualism Effect for Delaying Dementia Onset: A Bayesian Meta-Analysis"
 author:
-  - name: "Ziyuan Li"
+  - name: "Ziyuan Li\\textsuperscript{*}"
     affiliations:
       - ref: UOE
     orcid: 0009-0002-6586-3715
@@ -19,6 +19,8 @@ affiliations:
     city: Edinburgh
     country: UK
     postal-code: EH8 9AD
+thanks: |
+  \textsuperscript{*}Correspondence concerning this article should be addressed to Ziyuan Li, Department of Linguistics and English Language, 3 Charles St, University of Edinburgh, Edinburgh EH8 9AD, United Kingdom. Tel: +8618031633636
 date: "2025-05-14"
 format:
   tandf-pdf:
@@ -34,7 +36,7 @@ execute:
 abstract: |
   Evidence suggests that lifelong practice of two or more languages may contribute to cognitive reserve and protect against dementia. Most retrospective studies that compared bilinguals’ and monolinguals’ age at dementia onset revealed a delay for bilinguals. However, other retrospective studies point out that such protective effects of bilingualism are specific to some types of dementia but not others. Some prospective studies which investigated whether bilingualism reduces the incidence rate of dementia produced null results. Therefore, we conducted the first Bayesian meta-analysis to examine the relationship between bilingualism and age at onset of dementia and bilingualism and the incidence rate of dementia respectively. The results from 18 age at onset studies revealed that bilinguals were 3.45 years older than monolinguals when having the first symptom onset (95% credible interval (Crl): [2.8, 4.1]). Moreover, the result was only slightly influenced by years of education, although it is relatively uncertain about the effect of education on dementia. The results from 6 incidence rate studies did not provide robust evidence for bilingualism’s preventive effect. Therefore, this meta-analysis demonstrated that bilingualism has potential effects in delaying the onset of dementia but not preventing it. 
 
-keywords: [Bilingualism • Dementia • Alzheimer’s disease • Bayesian Meta-analysis]
+keywords: [Bilingualism • Dementia • Alzheimer’s Disease • Bayesian Meta-analysis • Bilingualism Effect]
 ---
 
 ```{r setup, include=FALSE}
