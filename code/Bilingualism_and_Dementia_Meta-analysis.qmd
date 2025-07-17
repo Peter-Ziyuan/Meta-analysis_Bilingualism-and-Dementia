@@ -70,7 +70,7 @@ seed <- 999
 
 # Introduction
 
-[You can mark changes in red like so]{.red}. The ageing adults may face an increasing risk of dementia, a range of neurodegenerative diseases, as a result of deterioration of brain tissue [@de2018] and a loss of functional connectivity between regions [@brier2012]. Such diseases affect language skills, memory and in later stages, bodily functions [@homer1994; @berkes2022]. With the ageing population and increased longevity of life, the prevalence of dementia also increases [@anderson2020; @berkes2022]. According to the @who2020, the total number of patients with dementia may rise to 82 million in 2030 and more than 150 million in 2050, which will bring enormous physical and psychological stress on both individual and societal levels. Unfortunately, it is still unclear how to prevent the pathology in ageing adults [@kepp2016] and the pharmaceutical treatments’ effects on slowing down its progression are inadequate [@massoud2010]. However, several socio-behavioural factors may contribute to cognitive reserve, which helps individuals use compensatory mechanisms or functional processes to cope with neurodegeneration and pathology [@bialystok2007]. These factors include education [@stern1999], complex social networking [@bennett2006], challenging occupational tasks [@stern2020], increasing physical activity [@sofi2011], and bilingualism [@bak2016; @jafari2021].
+The ageing adults may face an increasing risk of dementia, a syndrome resulting from range of neurodegenerative diseases, as a result of deterioration of brain tissue [@de2018] and a loss of functional connectivity between regions [@brier2012]. Such diseases affect language skills, memory and in later stages, bodily functions [@homer1994; @berkes2022]. With the ageing population and increased longevity of life, the prevalence of dementia also increases [@anderson2020; @berkes2022]. According to the @who2020, the total number of patients with dementia may rise to 82 million in 2030 and more than 150 million in 2050, which will bring enormous physical and psychological stress on both individual and societal levels. Unfortunately, it is still unclear how to prevent the pathology in ageing adults [@kepp2016]. [While recent pharmacological advances, particularly anti-amyloid monoclonal antibody therapies, have shown significant results in double-blind, placebo-controlled phase III clinical trials]{.red} [@budd2022; @sims2023; @van2023], [the clinical meaningfulness, the long-term impact of these treatments and the actual therapeutic efficacy and accessibility for real-world population are still under debate]{.red} [@angioni2024]. [Consequently, exploring non-pharmacological contributors to cognitive resilience remains a crucial avenue of research]{.red}. Several socio-behavioural factors may contribute to cognitive reserve, which helps individuals use compensatory mechanisms or functional processes to cope with neurodegeneration and pathology [@bialystok2007]. These factors include education [@stern1999], complex social networking [@bennett2006], challenging occupational tasks [@stern2020], increasing physical activity [@sofi2011], and bilingualism [@bak2016; @jafari2021].
 
 Recently, numerous studies have focused on the potential bilingualism effect on cognitive enhancements including improved attentional control, working memory, metalinguistic and metacognitive awareness. Moreover, these enhancements resulting from bilingualism across the lifespan may contribute to cognitive reserve, which delays the onset of dementia for 4 to 5 years according to some retrospective studies [e.g., @bialystok2007; @craik2010]. Yet, prospective studies revealed inconclusive results on bilingualism’s effect on reducing the risks of dementia [see @lawton2015 for null results; @zahodne2014 for positive results] while other retrospective studies showed a shorter delay of onset of dementia [e.g., 1.5 years: @berkes2020; 0.9 years: @chertkow2010]. Previous meta-analyses also revealed inconsistent results. The meta-analysis by @mukadam2017 only included four prospective studies and found no evidence for the protective effects of bilingualism on dementia while @anderson2020 meta-analysis that included 15 age-of-onset studies and 6 incidence studies found moderate evidence for bilingualism’s delaying of symptoms (Cohen’s d = 0.32) and weak evidence for bilingualism’s reducing the incidence of having the AD (d = 0.10). Despite such inconsistency, one potential modulating variable, dementia types, has been neglected by previous meta-analyses. @lee2022 pointed out that different subtypes of dementia seem to be deferred by different lengths of time in bilinguals compared with monolinguals. For instance, in @alladi2013, bilingualism’s delayed length of onset was 3.2 years, 6.0 years, 3.7 years, and 2.3 years for Alzheimer’s dementia (AD), frontotemporal dementia (FTD), vascular dementia (VaD) and dementia with Lewy bodies (DLB). Therefore, it would be necessary to conduct a new meta-analysis to include more recent research and examine the effect of dementia types to better address the bilingualism-dementia link.
 
@@ -112,7 +112,7 @@ To address the first research question, a Bayesian linear regression model will 
 
 ## Literature Searching
 
-The datasets used in the present meta-analysis were PsycInfo, PubMed, and Google Scholar. A search of these databases and data extraction were conducted by Z.L. with the following keywords: ("bilingualism" OR "multilingualism") AND ("Alzheimer's disease" OR "dementia" OR MCI).
+The datasets used in the present meta-analysis were PsycInfo, PubMed, and Google Scholar. A search of these databases and data extraction were conducted by Z.L. with the following keywords: ("bilingualism" OR "multilingualism") AND ("Alzheimer's disease" OR "dementia" OR "MCI").
 
 ## Inclusion and Exclusion Criteria
 
@@ -152,7 +152,7 @@ Shown in @fig-prisma, a total of 24 studies were included through searching the 
 
 ![Prisma flow diagram showing the number of studies included in the meta-analysis according to PRISMA (Preferred Reporting Items for Systematic reviews and Meta-Analysis) 2020.](images/fig2.jpg){#fig-prisma fig-align="center"}
 
-To fit in the Bayesian meta-analysis model, the researcher retrieved the summary data from each study, including the age at onset/diagnosis, standard deviation, number of individuals in bilingual and monolingual groups, years of education for each group, and dementia types in each study. One special case is that @zheng2018 included two monolingual groups: Mandarin and Cantonese. Different from previous meta-analyses to combine them into one monolingual group [@brini2020], the Bayesian linear model allows for two monolingual groups and one bilingual group. For the age at onset/diagnosis model, the final included sample was 23 pairs of participants (N = 3674, including 2023 monolinguals and 1641 bilinguals).
+To fit in the Bayesian meta-analysis model, we retrieved the summary data from each study, including the age at onset/diagnosis, standard deviation, number of individuals in bilingual and monolingual groups, years of education for each group, and dementia types in each study. One special case is that @zheng2018 included two monolingual groups: Mandarin and Cantonese. Different from previous meta-analyses to combine them into one monolingual group [@brini2020], the Bayesian linear model allows for two monolingual groups and one bilingual group. For the age at onset/diagnosis model, the final included sample was 23 pairs of participants (N = 3674, including 2023 monolinguals and 1641 bilinguals).
 
 ```{r read-data, echo=FALSE, include=FALSE}
 retrospective_2 <- read_csv("data/retrospective.csv") %>% 
@@ -195,11 +195,11 @@ summary(meta_analysismodel_1)
 plot(meta_analysismodel_1, ask = FALSE)
 ```
 
-```{r echo=FALSE, include=FALSE}
+```{r echo=FALSE}
 avg_comparisons(meta_analysismodel_1, variables = "mobi")
 ```
 
-We fitted a Bayesian linear regression model with mobi (language group) as the predictor, mean (age at onset) as the outcome variable and measurement error (added with se (SE) at the left side of the model formula). The results showed that at the population level, the estimated age at dementia onset for monolinguals was between 65.04 and 68.82 years at 95% Crl (β = 68.39, Est.Error = 1.64). For bilinguals, the estimated age at dementia onset was between 68.82 and 74.61 years at 95% Crl (β = 71.68, Est.Error = 1.49). I further used “avg_comparisons()” function to summarise the average marginal effects for bilinguals and monolinguals [@arel2024], which showed that the average difference between the age at dementia onset for bilinguals and monolinguals was between 2.8 and 4.1 years at 95% Crl with an estimate of 3.45 years. This meant that the bilingual population tends to have a later dementia symptom onset of around 3.45 years than monolinguals based on the provided data. A similar result was also shown in the forest plot of the difference in effect for bilinguals and monolinguals in which the majority of the studies have a positive value that favours bilingualism (see @fig-fig3). The majority of studies’ 95% credible interval was positive. Only one study [@duncan2018] resulted in a negative effect that monolinguals have a later dementia onset than bilinguals by around 1.42 years. Overall, the meta-analytic effect showed a relatively positive result that favoured bilinguals’ delayed onset of dementia. The following section will check the heterogeneity across the studies.
+We fitted a Bayesian linear regression model with mobi (language group) as the predictor, mean (age at onset) as the outcome variable and measurement error (added with se (SE) at the left side of the model formula). The results showed that at the population level, the estimated age at dementia onset for monolinguals was between 65.04 and 68.82 years at 95% Crl (β = 68.39, Est.Error = 1.64). For bilinguals, the estimated age at dementia onset was between 68.82 and 74.61 years at 95% Crl (β = 71.68, Est.Error = 1.49). [We]{.red} further used “avg_comparisons()” function to summarise the average marginal effects for bilinguals and monolinguals [@arel2024], which showed that the average difference between the age at dementia onset for bilinguals and monolinguals was between 2.8 and 4.1 years at 95% Crl with an estimate of 3.45 years. This meant that the bilingual population tends to have a later dementia symptom onset of around 3.45 years than monolinguals based on the provided data. A similar result was also shown in the forest plot of the difference in effect for bilinguals and monolinguals in which the majority of the studies have a positive value that favours bilingualism (see @fig-fig3). The majority of studies’ 95% credible interval was positive. Only one study [@duncan2018] resulted in a negative effect that monolinguals have a later dementia onset than bilinguals by around 1.42 years. Overall, the meta-analytic effect showed a relatively positive result that favoured bilinguals’ delayed onset of dementia. The following section will check the heterogeneity across the studies.
 
 ```{r echo=FALSE, include=FALSE}
 # Check the variable names in the model draws
@@ -207,6 +207,26 @@ model_draws <- as_draws_df(meta_analysismodel_1)
 names(model_draws)
 
 ```
+
+```{r}
+# Compute the difference between bilingual and monolingual
+posterior_diff <- model_draws$b_mobibilingual - model_draws$b_mobimonolingual
+
+# Summarize the posterior difference
+mean_diff <- mean(posterior_diff)
+ci_diff <- quantile(posterior_diff, probs = c(0.025, 0.975))
+prob_bilingual_advantage <- mean(posterior_diff > 0)
+prob_monolingual_advantage <- mean(posterior_diff < 0)
+
+# Output the results
+cat("Posterior difference (bilingual - monolingual):\n")
+cat("Mean difference:", round(mean_diff, 2), "\n")
+cat("95% Credible Interval:", round(ci_diff[1], 2), "to", round(ci_diff[2], 2), "\n")
+cat("P(bilingual > monolingual):", round(prob_bilingual_advantage, 3), "\n")
+cat("P(monolingual > bilingual):", round(prob_monolingual_advantage, 3), "\n")
+
+```
+
 
 ```{r echo=FALSE, include=FALSE}
 # Extract draws using the correct variable names
@@ -312,7 +332,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
 
 ### Heterogeneity across Studies
 
-In the present Bayesian meta-analysis model, heterogeneity was mainly expressed by the random effects at the group level, which was the difference in age at onset for mobi (monolingual group and bilingual group) across different study levels. At the group level, the standard deviation for mobimonolingual and mobibilingual was 7.13 with a 95% Crl \[5.24, 9.93\], and 6.54 with a 95% Crl \[4.79, 9.15\]. This relatively large standard deviation indicated that there was high heterogeneity across studies, although the summary meta-analytic effect was positive. This indicated that the summary effect may be influenced by the large heterogeneity and that it would be necessary to examine the source of such heterogeneity. Therefore, the researcher used the spread_draws() function [@kay2023] to draw two new forest plots that show the difference between the population-level mean age at dementia onset and each study’s age at dementia onset for bilinguals and monolinguals respectively (see Figure 4).
+In the present Bayesian meta-analysis model, heterogeneity was mainly expressed by the random effects at the group level, which was the difference in age at onset for mobi (monolingual group and bilingual group) across different study levels. At the group level, the standard deviation for mobimonolingual and mobibilingual was 7.13 with a 95% Crl \[5.24, 9.93\], and 6.54 with a 95% Crl \[4.79, 9.15\]. This relatively large standard deviation indicated that there was high heterogeneity across studies, although the summary meta-analytic effect was positive. This indicated that the summary effect may be influenced by the large heterogeneity and that it would be necessary to examine the source of such heterogeneity. Therefore, we used the spread_draws() function [@kay2023] to draw two new forest plots that show the difference between the population-level mean age at dementia onset and each study’s age at dementia onset for bilinguals and monolinguals respectively (see Figure 4).
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -612,6 +632,36 @@ avg_comparisons(meta_analysismodel_4, variables = "mobi")
 
 For FTD dementia subgroup (see @fig-fig6 for the forest plot), the estimated age at FTD onsets for monolinguals and bilinguals were 58.02 with a 95%Crl \[52.95, 62.84\] and 61.44 with a 95%Crl \[57.01, 64.35\], which were largely lower than the main meta-analytic effect and AD subgroup’s onset. Using avg_comparisons() again, the average difference in marginal effects for bilinguals and monolinguals was 3.76 with a 95%Crl \[1.46, 6.26\]. This showed that bilinguals were 3.76 years older than monolinguals when having the first symptom onset for FTD type of dementia. The heterogeneity level was even lower in this group as since the group-level estimated effects for mobimonolingual and mobibilingual were 2.92 and 1.61. Yet, the relatively low number of studies might have contributed to the low heterogeneity and the wide 95%Crl of the estimated difference between bilinguals and monolinguals at the population level.
 
+```{r}
+#Addressing 
+# Extract draws
+draws_AD  <- as_draws_df(meta_analysismodel_3)
+draws_FTD <- as_draws_df(meta_analysismodel_4)
+
+# Compute bilingual - monolingual within each group
+effect_AD_diff  <- draws_AD$b_mobibilingual  - draws_AD$b_mobimonolingual
+effect_FTD_diff <- draws_FTD$b_mobibilingual - draws_FTD$b_mobimonolingual
+
+# Compute difference between the two subgroups
+diff_FTD_AD <- effect_FTD_diff - effect_AD_diff
+
+# Summarize
+mean_diff <- mean(diff_FTD_AD)
+ci_diff   <- quantile(diff_FTD_AD, probs = c(0.025, 0.975))
+prob_FTD_greater <- mean(diff_FTD_AD > 0)
+prob_AD_greater  <- mean(diff_FTD_AD < 0)
+
+# Output
+cat("Posterior difference in bilingual *advantage* (FTD − AD):\n")
+cat("Mean difference:", round(mean_diff, 2), "\n")
+cat("95% Credible Interval:", round(ci_diff[1], 2), "to", round(ci_diff[2], 2), "\n")
+cat("P(FTD > AD):", round(prob_FTD_greater, 3), "\n")
+cat("P(AD > FTD):", round(prob_AD_greater, 3), "\n")
+
+
+```
+
+
 ```{r echo=FALSE, include=FALSE}
 MCI <- read.csv("data/MCI.csv") %>% mutate(
     SE = SD / sqrt(N),
@@ -869,7 +919,7 @@ summary(meta_analysismodel_6)
 avg_comparisons(meta_analysismodel_6, variables = "mobi")
 ```
 
-The researcher removed the studies that fell outside the funnel shape to rerun the Bayesian linear model. At the population level, the results showed that the estimated age at dementia onset for monolinguals is 66.46 with a 95%Crl \[62.75, 70.17\] and for bilinguals is 70.37 with a 95%Crl \[67.03, 73.81\]. The estimated average difference in the onset of dementia between bilinguals and monolinguals is 3.88 years with a 95%Crl \[3.11, 4.65\], which is even higher than the mean meta-analytic effect, 3.45 years. This provides evidence that the meta-analytic effect was not a total result of bias.
+[We]{.red} removed the studies that fell outside the funnel shape to rerun the Bayesian linear model. At the population level, the results showed that the estimated age at dementia onset for monolinguals is 66.46 with a 95%Crl \[62.75, 70.17\] and for bilinguals is 70.37 with a 95%Crl \[67.03, 73.81\]. The estimated average difference in the onset of dementia between bilinguals and monolinguals is 3.88 years with a 95%Crl \[3.11, 4.65\], which is even higher than the mean meta-analytic effect, 3.45 years. This provides evidence that the meta-analytic effect was not a total result of bias.
 
 ## Results for Meta-analysis of Bilingualism and Dementia Prevalence Studies
 
@@ -985,7 +1035,7 @@ model_draws <- as_draws_df(meta_analysismodel_7)
 names(model_draws)
 ```
 
-To investigate whether bilingualism is associated with reduced dementia risks, we fitted a Bayesian hierarchical logistic regression model predicting the number of dementia cases out of total number of participants using a binomial likelihood. The results showed that the population-level estimate for monolingual is -2.06 with a 95%Crl \[-3.05, -1.16\] and that the estimate for bilingual is -2.27 with a 95%Crl \[-3.09, -1.47\]. We also used avg_comparison() to show the ratio of the average predicted probability of dementia for bilinguals to the average predicted probability of dementia for monolinguals, which resulted in a 0.845 estimate with a 95%Crl \[0.726, 0.984\]. This indicated that the average predicted probability of dementia for bilingual individuals was from 72.6% to 98.4% of the average predicted probability of dementia for monolinguals. In other words, the meta-analytic effect was likely to fall between 1.6% and 27.4% lower incidence for bilinguals compared with monolinguals based on the included 6 studies. This is a small to moderate effect for bilingualism (see @fig-fig9 for forest plot). It is possible that such a result was influenced by bias given the relatively small number of studies. Yet, the funnel plot is believed not to be reliable if the number of studies is under 10 [@sedgwick2015]. Therefore, the present thesis did not use funnel plot to address the potential bias.
+To investigate whether bilingualism is associated with reduced dementia risks, we fitted a Bayesian hierarchical logistic regression model predicting the number of dementia cases out of total number of participants using a binomial likelihood. The results showed that the population-level estimate for monolingual is -2.06 with a 95%Crl \[-3.05, -1.16\] and that the estimate for bilingual is -2.27 with a 95%Crl \[-3.09, -1.47\]. We also used avg_comparison() to show the ratio of the average predicted probability of dementia for bilinguals to the average predicted probability of dementia for monolinguals, which resulted in a 0.845 estimate with a 95%Crl \[0.726, 0.984\]. This indicated that the average predicted probability of dementia for bilingual individuals was from 72.6% to 98.4% of the average predicted probability of dementia for monolinguals. In other words, the meta-analytic effect was likely to fall between 1.6% and 27.4% lower incidence for bilinguals compared with monolinguals based on the included 6 studies. This is a small to moderate effect for bilingualism (see @fig-fig9 for forest plot). It is possible that such a result was influenced by bias given the relatively small number of studies. Yet, the funnel plot is believed not to be reliable if the number of studies is under 10 [@sedgwick2015]. Therefore, the present [meta-analysis]{.red} did not use funnel plot to address the potential bias.
 
 Nevertheless, a detailed inspection of the context of these studies and the forest plot (@fig-fig9) revealed that one study had great influence on the results [@venugopal2024]. The estimated difference in dementia risk of bilinguals and monolinguals is between -1.27 and -0.43 log-odds at 95% probability, which corresponds to 21.9% and 39.4% lower probability for bilinguals [@venugopal2024]. The study design of this community-based study is a corss-sectional study, which is different from the other five longitudinal studies. Considering such difference, we reran the Bayesian model without @venugopal2024. The results showed that the average incidence rates for bilinguals is about 86.6% of the incidence rate of monolinguals with a 95% Crl \[0.634, 1.5\]. This means that we are relatively uncertain about whether bilinguals have a lower incidence rate than monolinguals at the population-level, since the 95% credible interval cross 1.
 
@@ -1013,7 +1063,7 @@ avg_comparisons(meta_analysismodel_8, variables = "mobi_2", comparison = "ratio"
 
 # Discussion
 
-Numerous studies have investigated whether bilingualism influences aging and neurodegenerative disease, which have not reached a conclusive remark. Recently, three meta-analyses examined bilingualism and age at dementia onset or bilingualism and dementia prevalence rate [@anderson2020; @brini2020; @mukadam2017]. However, the present thesis is the first meta-analysis to use Bayesian statistics to explore bilingualism and dementia. Moreover, it addressed the following research questions.
+Numerous studies have investigated whether bilingualism influences aging and neurodegenerative disease, which have not reached a conclusive remark. Recently, three meta-analyses examined bilingualism and age at dementia onset or bilingualism and dementia prevalence rate [@anderson2020; @brini2020; @mukadam2017]. However, the present [study]{.red} is the first meta-analysis to use Bayesian statistics to explore bilingualism and dementia. Moreover, it addressed the following research questions.
 
 ## Bilinguals Have a Delayed Onset of Dementia
 
@@ -1021,7 +1071,7 @@ In terms of the first research question (i.e., Are there differences between the
 
 ## The Bilingualism’s Preventive Effect is not Robust
 
-For the second research question (i.e., Is there a bilingualism’s preventing effect on dementia?), the present thesis did not produce robust evidence although the meta-analytic effect favours bilingualism. The meta-analytic effect is that the incidence rate of dementia for bilinguals is 1.6% to 27.4% lower than monolinguals at 95% probability with an average estimate of 15.5% lower incidence. This result is largely in line with [@anderson2020], which found week evidence for bilingualism preventing dementia (Cohen’s d = 0.10).
+For the second research question (i.e., Is there a bilingualism’s preventing effect on dementia?), the present [meta-analysis]{.red} did not produce robust evidence although the meta-analytic effect favours bilingualism. The meta-analytic effect is that the incidence rate of dementia for bilinguals is 1.6% to 27.4% lower than monolinguals at 95% probability with an average estimate of 15.5% lower incidence. This result is largely in line with [@anderson2020], which found week evidence for bilingualism preventing dementia (Cohen’s d = 0.10).
 
 However, the results in this analysis were greatly influenced by one individual study, @venugopal2024, which had a large effect. @venugopal2024 is a community-based study with 1234 participants from Bengaluru, India. Instead of following the participants for years to collect the incidence rate in a period, they simply counted the number of participants, who developed dementia at the time when the study was conducted. Their results showed that 46 out of 803 bilinguals and 58 out of 431 monolinguals had dementia or MCI. Yet, such results may not be enough to support bilingualism’s effect on preventing the disease. One explanation could be that bilinguals have a delayed onset of dementia, some bilinguals in @venugopal2024 sample would develop dementia in the end yet did not show symptoms when they were researched. In this sense, bilinguals only delay the dementia onset rather than totally prevent the disease [@berkes2022]. The results became more uncertain after removing @venugopal2024, which provides no evidence for bilingualism’s preventive effect on dementia. This result (incidence rate: bilinguals/monolinguals 95%Crl [0.634, 1.5]) corresponds to @mukadam2017, which found a odds-ratio of [0.74, 1.23] at 95% confidence. Therefore, the present meta-analysis did not find robust evidence for bilingualism’s preventive effect on dementia.
 
@@ -1029,19 +1079,22 @@ However, the results in this analysis were greatly influenced by one individual 
 
 ### No Evidence for Education to be a Confounding Variable or not
 
-This thesis also examined whether education confounded the bilingualism effect on delaying the onset of dementia. The results from the Bayesian linear regression model reveal that it is uncertain whether the year of education is a predictor of age at onset for dementia or not. Yet, bilingualism’s effect on dementia is not influenced by years of education based on the results. Such results are largely in accordance with previous studies which showed that bilingualism’s effect on delaying the onset of dementia was independent of education and other socioeconomic factors [e.g., @alladi2013; @craik2010; @anderson2020]. Therefore, the present analysis further shows that differences in the bilinguals’ and monolinguals’ education status are not predictive of their differences in the age at symptom onset of dementia.
+This Bayesian meta-analysis also examined whether education confounded the bilingualism effect on delaying the onset of dementia. The results from the Bayesian linear regression model reveal that it is uncertain whether the year of education is a predictor of age at onset for dementia or not. Yet, bilingualism’s effect on dementia is not influenced by years of education based on the results. Such results are largely in accordance with previous studies which showed that bilingualism’s effect on delaying the onset of dementia was independent of education and other socioeconomic factors [e.g., @alladi2013; @craik2010; @anderson2020]. Therefore, the present analysis further shows that differences in the bilinguals’ and monolinguals’ education status are not predictive of their differences in the age at symptom onset of dementia.
 
 ### Bilingualism may Defer Different Types of Dementia Differently
 
 Many recent studies have pointed out that bilinguals’ delay on age at dementia onset may be specific to different subtypes of dementia [@alladi2013; @lee2022]. The results from the subgroup analysis in this meta-analysis provide evidence for such arguments. The difference between bilinguals and monolinguals was the largest on FTD subtype (3.76 years on average) following the AD subtype (3.36 years on average) and MCI (2.88 years on average). One explanation for such phenomena may be that the brain regions that are affected by different subtypes of dementia vary [@lee2022]. For instance, AD subtype mainly affects the neurons in entorhinal cortex and hippocampus [@meda2013]; FTD subtype causes atrophy in the frontal and temporal lobes [@chan2001] while vascular dementia subtype involves damage of white matter beneath the gray matter [@hase2018]. Therefore, it could be that bilingualism tends to affect the functional connectivity of frontal and temporal lobes more efficiently as mentioned in section 2.2. Moreover, different language use experience may affect distinct brain areas, which indicates that bilinguals with different language experience may show different “advantage” on resisting various kinds of brain pathologies [@lee2022]. Unfortunately, few studies have reported the language experience of bilinguals in detail. Therefore, it would be helpful to narrow down bilingualism to different types of bilingual activity such as frequent vs. infrequent switching between languages, production practice dominant vs. perception practice dominant bilingualism.
 
-Future empirical studies investigating the bilingualism and dementia link are suggested to view bilingualism and dementia as highly dynamic phenomena rather than unitary ones. More efforts should be paid to investigate the neuropathology of different subtypes of dementia and how different bilingualism experiences affect the onset of symptoms of these subtypes. It should also be noted that bilingualism is not the only factor that contributes to cognitive reserve and the delay of dementia. On the one hand, future researchers should follow @alladi2013 and @craik2010 examples to control potential confounding variables. On the other, they can compare the effect of bilingualism with other mentally challenging activities such as engaging in difficult physical activities [@sofi2011], playing an instrument [@hanna2011].
+Future empirical studies investigating the bilingualism and dementia link are suggested to view bilingualism and dementia as highly dynamic phenomena rather than unitary ones. More efforts should be paid to investigate the neuropathology of different subtypes of dementia and how different bilingualism experiences affect the onset of symptoms of these subtypes. 
+
+## The Uniqueness of Bilingualism among Cognitive Reserve Factors
+[At the end of the discussion, we should point out that bilingualism is not the only factor that contributes to cognitive reserve and the delay of dementia. Yet, bilingualism occupies a unique role compared with other mentally challenging activities such as engaging in difficult physical activities] [@sofi2011]{.red}, [playing an instrument] [@hanna2011]{.red}. [From the neurological mechanism perspective, bilingualism stands out for its ubiquitousness across the lifespan, independent of contextual need or consciousness. It contributes to neuroplastic change in multiple brain regions that are strongly implicated brain aging. The overlap between bilingual language control network and the fronto-parietal network for domain-general control helps bilingual to constantly maintain higher functional and neurostructural integrity during aging]{.red} [@gallo2024; @wu2019]. [From the social dimension, bilingualism is arguably more accessible and equitable than other cognitive reserve factors since the motivation and attitudes towards higher level of education, muscianship, and exercise are heavily influenced by socioeconomic status]{.red} [@gallo2024; @wardle2003]. [The present meta-analysis on bilingualism and dementia add to a growing body of evidence coining its distinctive role in cognitive reserve and delaying dementia onset, which provides significant implications for individuals, caregivers, and public health systems]{.red}.
 
 # Limitations
 
-One potential limitation of the present thesis is that it does not view bilingualism as a continuum. This is partially because most previous empirical studies employed a dichotomous categorization of bilinguals and monolinguals. For the studies that did use bilingualism as a continuum, measurements also varies since some used the frequency of code-switching [@calabria2020] while others used objective measures [e.g., Boston Naming Test in @gollan2012]. Given the limited number of such studies and various measurements, the present meta-analysis did not include them. Future meta-analyses can attempt to include these studies as more new studies using similar measurements appear.
+One potential limitation of the present [meta-analysis]{.red} is that it does not view bilingualism as a continuum. This is partially because most previous empirical studies employed a dichotomous categorization of bilinguals and monolinguals. For the studies that did use bilingualism as a continuum, measurements also varies since some used the frequency of code-switching [@calabria2020] while others used objective measures [e.g., Boston Naming Test in @gollan2012]. Given the limited number of such studies and various measurements, the present meta-analysis did not include them. Future meta-analyses can attempt to include these studies as more new studies using similar measurements appear.
 
-@borenstein2021 state that it is rare for researchers to collect all the studies that meet the inclusion criteria into the meta-analysis. The researcher is aware that some studies that meet the inclusion criterion might be missing and that access to unpublished articles was limited. The relatively small number of studies (18 studies for age at onset and 6 studies for incidence rate) might be the reason for notable uncertainty in the results of the Bayesian linear regression model.
+@borenstein2021 state that it is rare for researchers to collect all the studies that meet the inclusion criteria into the meta-analysis. [We are]{.red} aware that some studies that meet the inclusion criterion might be missing and that access to unpublished articles was limited. The relatively small number of studies (18 studies for age at onset and 6 studies for incidence rate) might be the reason for notable uncertainty in the results of the Bayesian linear regression model.
 
 # Conclusion
 
