@@ -1063,7 +1063,7 @@ avg_comparisons(meta_analysismodel_8, variables = "mobi_2", comparison = "ratio"
 
 # Discussion
 
-Numerous studies have investigated whether bilingualism influences aging and neurodegenerative disease, which have not reached a conclusive remark. Recently, three meta-analyses examined bilingualism and age at dementia onset or bilingualism and dementia prevalence rate [@anderson2020; @brini2020; @mukadam2017]. However, the present [study]{.red} is the first meta-analysis to use Bayesian statistics to explore bilingualism and dementia. Moreover, it addressed the following research questions.
+Numerous studies have investigated whether bilingualism influences aging and neurodegenerative disease, which have not reached a conclusive remark. Recently, three meta-analyses examined bilingualism and age at dementia onset or bilingualism and dementia prevalence rate [@anderson2020; @brini2020; @mukadam2017]. However, the present [study]{.red} is the first meta-analysis to use Bayesian statistics to explore bilingualism and dementia. Moreover, it addressed the following research questions: [Does bilingualism have protective effect on delaying the onset of dementia? Is there a bilingualism's preventing effect on dementia? Do education as a confounding variable and dementia type as a modulating variable influence the relation between bilingualism and the age at onset of dementia?]{.red}
 
 ## Bilinguals Have a Delayed Onset of Dementia
 
