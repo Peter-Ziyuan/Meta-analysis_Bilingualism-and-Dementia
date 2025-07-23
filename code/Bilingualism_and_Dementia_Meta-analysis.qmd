@@ -307,19 +307,36 @@ overall_effect <- draws_diff %>%
     lower = quantile(difference, 0.025),
     upper = quantile(difference, 0.975)
   ) %>%
-  mutate(Study = "Summary_effect")
+  mutate(Study = "Summary Effect")
 
 draws_summary <- bind_rows(draws_summary, overall_effect)
+# Ensure Study is character before factor level assignment
+draws_summary <- draws_summary %>%
+  mutate(Study = as.character(Study))
+
+# Manually reorder studies by mean_diff, keeping Summary Effect at bottom
+ordered_studies <- draws_summary %>%
+  filter(Study != "Summary Effect") %>%
+  arrange(mean_diff) %>%
+  pull(Study)
+
+draws_summary$Study <- factor(draws_summary$Study, levels = c("Summary Effect", ordered_studies))
+
+
 
 # Generate the forest plot
-ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
+ggplot(draws_summary, aes(x = mean_diff, y = Study)) +
   geom_vline(xintercept = 0, linewidth = .25, lty = 2) +  # Vertical line at zero
   geom_pointrange(aes(xmin = lower, xmax = upper), size = .5) +  # Plot credible intervals
   geom_point(size = 3, color = "dodgerblue") +  # Plot mean differences
+  geom_point(data = subset(draws_summary, Study == "Summary Effect"),
+             aes(x = mean_diff, y = Study),
+             color = "firebrick", size = 5, shape = 18) +
   geom_text(
     aes(label = glue("{round(mean_diff, 2)} [{round(lower, 2)}, {round(upper, 2)}]"), x = max(upper) + 0.5), 
     hjust = 0, size = 2
   ) + 
+  scale_y_discrete(limits = levels(draws_summary$Study)) +
   labs(
     title = "Forest Plot of Meta-analytic Effects",
     x = "Difference in Age at Onset",
@@ -332,7 +349,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
 
 ### Heterogeneity across Studies
 
-In the present Bayesian meta-analysis model, heterogeneity was mainly expressed by the random effects at the group level, which was the difference in age at onset for mobi (monolingual group and bilingual group) across different study levels. At the group level, the standard deviation for mobimonolingual and mobibilingual was 7.13 with a 95% Crl \[5.24, 9.93\], and 6.54 with a 95% Crl \[4.79, 9.15\]. This relatively large standard deviation indicated that there was high heterogeneity across studies, although the summary meta-analytic effect was positive. This indicated that the summary effect may be influenced by the large heterogeneity and that it would be necessary to examine the source of such heterogeneity. Therefore, we used the spread_draws() function [@kay2023] to draw two new forest plots that show the difference between the population-level mean age at dementia onset and each study’s age at dementia onset for bilinguals and monolinguals respectively (see Figure 4).
+In the present Bayesian meta-analysis model, heterogeneity was mainly expressed by the random effects at the group level, which was the difference in age at onset for [monolingual group and bilingual group]{.red} across different study levels. At the group level, the standard deviation for [monolingual group and bilingual group]{.red} was 7.13 with a 95% Crl \[5.24, 9.93\], and 6.54 with a 95% Crl \[4.79, 9.15\]. This relatively large standard deviation indicated that there was high heterogeneity across studies, although the summary meta-analytic effect was positive. This indicated that the summary effect may be influenced by the large heterogeneity and that it would be necessary to examine the source of such heterogeneity. Therefore, we used the spread_draws() function [@kay2023] to draw two new forest plots that show the difference between the population-level mean age at dementia onset and each study’s age at dementia onset for bilinguals and monolinguals respectively (see Figure 4).
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -528,7 +545,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
   coord_cartesian(clip = "off", xlim = c(-4, 16))
 ```
 
-For the AD dementia subgroup (see @fig-fig5 for the forest plot), the results showed that at the population-level, monolinguals had an age at AD onset at 70.39 years with a 95%Crl \[66.90, 73.33\] while the age at AD onset for bilinguals was 73.68 with a 95%Crl \[70.59, 76.69\]. The mean average difference between the age at AD onset for bilinguals and monolinguals was 3.36 with a 95%Crl \[2.61, 4.15\]. Compared with the main meta-analytic results, the estimated age at AD onset was higher for both monolingual and bilingual populations. Yet, the difference between bilinguals’ and monolinguals’ age at onset (3.36-year) was smaller although very close to the main effect (3.45-year). Moreover, the level of heterogeneity decreased moderately compared with the mean meta-analytic results since the group-level estimated effects for mobimonolingual and mobibilingual were 6.09 and 5.57.
+For the AD dementia subgroup (see @fig-fig5 for the forest plot), the results showed that at the population-level, monolinguals had an age at AD onset at 70.39 years with a 95%Crl \[66.90, 73.33\] while the age at AD onset for bilinguals was 73.68 with a 95%Crl \[70.59, 76.69\]. The mean average difference between the age at AD onset for bilinguals and monolinguals was 3.36 with a 95%Crl \[2.61, 4.15\]. Compared with the main meta-analytic results, the estimated age at AD onset was higher for both monolingual and bilingual populations. Yet, the difference between bilinguals’ and monolinguals’ age at onset (3.36-year) was smaller although very close to the main effect (3.45-year). Moreover, the level of heterogeneity decreased moderately compared with the mean meta-analytic results since the group-level estimated effects for [monolingual group and bilingual group]{.red} were 6.09 and 5.57.
 
 ```{r echo=FALSE, include=FALSE}
 FTD <- read.csv("data/FTD.csv") %>% mutate(
@@ -630,7 +647,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
 avg_comparisons(meta_analysismodel_4, variables = "mobi")
 ```
 
-For FTD dementia subgroup (see @fig-fig6 for the forest plot), the estimated age at FTD onsets for monolinguals and bilinguals were 58.02 with a 95%Crl \[52.95, 62.84\] and 61.44 with a 95%Crl \[57.01, 64.35\], which were largely lower than the main meta-analytic effect and AD subgroup’s onset. Using avg_comparisons() again, the average difference in marginal effects for bilinguals and monolinguals was 3.76 with a 95%Crl \[1.46, 6.26\]. This showed that bilinguals were 3.76 years older than monolinguals when having the first symptom onset for FTD type of dementia. The heterogeneity level was even lower in this group as since the group-level estimated effects for mobimonolingual and mobibilingual were 2.92 and 1.61. Yet, the relatively low number of studies might have contributed to the low heterogeneity and the wide 95%Crl of the estimated difference between bilinguals and monolinguals at the population level.
+For FTD dementia subgroup (see @fig-fig6 for the forest plot), the estimated age at FTD onsets for monolinguals and bilinguals were 58.02 with a 95%Crl \[52.95, 62.84\] and 61.44 with a 95%Crl \[57.01, 64.35\], which were largely lower than the main meta-analytic effect and AD subgroup’s onset. Using avg_comparisons() again, the average difference in marginal effects for bilinguals and monolinguals was 3.76 with a 95%Crl \[1.46, 6.26\]. This showed that bilinguals were 3.76 years older than monolinguals when having the first symptom onset for FTD type of dementia. The heterogeneity level was even lower in this group as since the group-level estimated effects for [monolingual group and bilingual group]{.red} were 2.92 and 1.61. Yet, the relatively low number of studies might have contributed to the low heterogeneity and the wide 95%Crl of the estimated difference between bilinguals and monolinguals at the population level.
 
 ```{r}
 #Addressing 
@@ -760,7 +777,7 @@ ggplot(draws_summary, aes(x = mean_diff, y = fct_reorder(Study, mean_diff))) +
 avg_comparisons(meta_analysismodel_5, variables = "mobi")
 ```
 
-For the MCI subgroup (see @fig-fig7 for the forest plot), the estimated age at MCI onsets was 68.52 (95%Crl \[54.91, 80.60\]) for monolinguals and 72.06 (95%Crl \[59.80, 83.31\]) for bilinguals, which was slightly earlier than AD subgroup. Such results were expected since mild cognitive development is the transitional stage between healthy brain condition and dementia [@frank2008]. However, the estimated average difference in marginal effects for bilinguals and monolinguals was 2.88 years with a 95%Crl \[0.914, 4.84\]. This difference between the age at onset of bilinguals and monolinguals was the smallest in the three subgroups. Additionally, the standard deviation for mobimonolingual (11.50) and mobibilingual (9.19) (group-level effects) were the largest among the three groups. This indicated that there were large variations between the age at onset across different studies in the MCI subgroups. It could be because one study’s [@ramakrishnan2017] age at MCI onset was extremely lower than the other two [@berkes2020; @ossher2013].
+For the MCI subgroup (see @fig-fig7 for the forest plot), the estimated age at MCI onsets was 68.52 (95%Crl \[54.91, 80.60\]) for monolinguals and 72.06 (95%Crl \[59.80, 83.31\]) for bilinguals, which was slightly earlier than AD subgroup. Such results were expected since mild cognitive development is the transitional stage between healthy brain condition and dementia [@frank2008]. However, the estimated average difference in marginal effects for bilinguals and monolinguals was 2.88 years with a 95%Crl \[0.914, 4.84\]. This difference between the age at onset of bilinguals and monolinguals was the smallest in the three subgroups. Additionally, the standard deviation for [monolingual]{.red} (11.50) and [bilingual]{.red} (9.19) (group-level effects) were the largest among the three groups. This indicated that there were large variations between the age at onset across different studies in the MCI subgroups. It could be because one study’s [@ramakrishnan2017] age at MCI onset was extremely lower than the other two [@berkes2020; @ossher2013].
 
 Comparing the three subgroups at the population-level, it could be found that the AD subgroup had the latest age at onset for both bilinguals and monolinguals while the FTD subgroup had the earliest. For the difference between the age at onset of bilinguals and monolinguals, the FTD subgroup had the largest difference following the AD subgroup. The MCI subgroup’s difference was quite smaller than the two. Additionally, the difference in heterogeneity among the groups may account for the relatively large heterogeneity in the main meta-analysis. These results will be further discussed in the discussion section.
 
