@@ -627,7 +627,7 @@ FTD <- read.csv("data/FTD.csv") %>% mutate(
 ```
 
 
-```{r echo=FALSE, include=FALSE}
+```{r echo=FALSE}
 meta_analysismodel_4 <- brm(
   mean | se(SE) ~ 0 + mobi + (0 + mobi | Study),
   data = FTD,
